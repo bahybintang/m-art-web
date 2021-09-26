@@ -13,11 +13,11 @@ import { PasswordField } from './PasswordField';
 import RadioCard from './RadioCard';
 
 export const LoginForm = props => {
-  const options = ['Seller', 'Buyer'];
-  const [role, setRole] = useState('Buyer');
+  const options = ['Seller', 'Customer'];
+  const [role, setRole] = useState('Customer');
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'framework',
-    defaultValue: 'Buyer',
+    defaultValue: 'Customer',
     onChange: setRole,
   });
 
