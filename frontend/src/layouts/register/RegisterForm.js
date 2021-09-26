@@ -9,6 +9,7 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { PasswordConfirmationField } from './PasswordConfirmationField';
 import { PasswordField } from './PasswordField';
 import RadioCard from './RadioCard';
 
@@ -27,8 +28,10 @@ export const RegisterForm = props => {
       onSubmit={e => {
         e.preventDefault();
         const email = e.target[0].value;
-        const password = e.target[2].value;
-        console.log(email, password, role);
+        const username = e.target[1].value;
+        const password = e.target[3].value;
+        const password_confrimation = e.target[5].value;
+        console.log(email, username, password, password_confrimation, role);
       }}
       {...props}
     >
@@ -42,6 +45,7 @@ export const RegisterForm = props => {
           <Input name="username" type="text" autoComplete="username" required />
         </FormControl>
         <PasswordField />
+        <PasswordConfirmationField />
         <HStack {...group}>
           {options.map(value => {
             const radio = getRadioProps({ value });
