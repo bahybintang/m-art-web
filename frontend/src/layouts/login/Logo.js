@@ -1,10 +1,4 @@
-import {
-  chakra,
-  useColorModeValue,
-  useToken,
-  Heading,
-  Box,
-} from '@chakra-ui/react';
+import { chakra, useColorModeValue, useToken } from '@chakra-ui/react';
 import { AiTwotoneShop } from 'react-icons/ai';
 import * as React from 'react';
 
@@ -25,7 +19,7 @@ export const Logo = props => {
       <text
         x="30"
         y="20"
-        style={{ font: 'bold 19px sans-serif' }}
+        style={{ font: 'bold 19px monospace' }}
         fill={useColorModeValue(black, white)}
       >
         M-Art

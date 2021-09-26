@@ -1,5 +1,4 @@
 import {
-  Box,
   Flex,
   FormControl,
   FormLabel,
@@ -9,7 +8,6 @@ import {
   InputRightElement,
   useDisclosure,
   useMergeRefs,
-  useColorModeValue as mode,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
