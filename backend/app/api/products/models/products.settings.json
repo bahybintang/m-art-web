@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "products",
   "info": {
-    "name": "products"
+    "name": "products",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -38,8 +39,8 @@
       "type": "float",
       "required": true
     },
-    "seller": {
-      "plugin": "admin",
+    "users_permissions_user": {
+      "plugin": "users-permissions",
       "model": "user"
     }
   }
