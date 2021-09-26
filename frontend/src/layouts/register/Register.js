@@ -16,11 +16,11 @@ function Register() {
       <Box maxW="md" mx="auto">
         <Logo mx="auto" h="8" mb={{ base: '10', md: '20' }} />
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
-          Sign in to your account
+          Create your account
         </Heading>
         <Text mt="4" mb="8" align="center" maxW="md" fontWeight="medium">
-          <Text as="span">Don&apos;t have an account?</Text>
-          <Link href="signup">Sign up</Link>
+          <Text as="span">Do you have an account?</Text>
+          <Link href="login">Sign in</Link>
         </Text>
         <Card>
           <RegisterForm />
