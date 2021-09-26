@@ -70,7 +70,33 @@ async function doLogin(email, password) {
       let data = await response.json();
       return data.message[0].messages[0].message;
     } catch (_) {
-      return "Something is wrong"
+      return 'Something is wrong';
+    }
+  }
+}
+
+async function doRegister(email, username, password, role) {
+  let response = await fetch(getUrl('auth/local/register'), {
+    method: 'POST',
+    body: JSON.stringify({
+      email: email,
+      username: username,
+      eCommerceRole: role,
+      password: password,
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.status === 200) {
+    let data = await response.json();
+    saveUserData(data.user);
+    saveToken(data.jwt);
+    return true;
+  } else {
+    try {
+      let data = await response.json();
+      return data.message[0].messages[0].message;
+    } catch (_) {
+      return 'Something is wrong';
     }
   }
 }
@@ -141,6 +167,7 @@ function withAuthSeller(Component) {
 export {
   doLogout,
   doLogin,
+  doRegister,
   withAuthCustomer,
   withAuthSeller,
   withAuthAll,

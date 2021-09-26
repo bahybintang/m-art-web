@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Link, VStack, Code, Grid } from '@chakra-ui/react';
+import { Box, Text, Link, VStack, Grid } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../components/ColorModeSwitcher';
 
 function Home() {

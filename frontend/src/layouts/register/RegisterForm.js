@@ -7,31 +7,45 @@ import {
   Stack,
   useRadioGroup,
   HStack,
+  useToast,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { PasswordConfirmationField } from './PasswordConfirmationField';
 import { PasswordField } from './PasswordField';
 import RadioCard from './RadioCard';
+import { doRegister } from '../../helpers/Auth';
 
 export const RegisterForm = props => {
-  const options = ['Seller', 'Buyer'];
-  const [role, setRole] = useState('Buyer');
+  const toast = useToast();
+  const options = ['Seller', 'Customer'];
+  const [role, setRole] = useState('Customer');
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'framework',
-    defaultValue: 'Buyer',
+    defaultValue: 'Customer',
     onChange: setRole,
   });
 
   const group = getRootProps();
   return (
     <chakra.form
-      onSubmit={e => {
+      onSubmit={async e => {
         e.preventDefault();
         const email = e.target[0].value;
         const username = e.target[1].value;
         const password = e.target[3].value;
-        const password_confrimation = e.target[5].value;
-        console.log(email, username, password, password_confrimation, role);
+        // const password_confrimation = e.target[5].value;
+        const result = await doRegister(email, username, password, role);
+        if (result === true) {
+          window.location = '/login';
+        } else {
+          toast({
+            title: 'Login failed',
+            description: result,
+            status: 'warning',
+            duration: 3000,
+            isClosable: true,
+          });
+        }
       }}
       {...props}
     >
@@ -57,7 +71,7 @@ export const RegisterForm = props => {
           })}
         </HStack>
         <Button type="submit" colorScheme="blue" size="lg" fontSize="md">
-          Sign in
+          Register
         </Button>
       </Stack>
     </chakra.form>
