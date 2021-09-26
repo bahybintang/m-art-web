@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box, Text, VStack, Grid } from '@chakra-ui/react';
+import { Box, Text, VStack, Grid, Button } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../components/ColorModeSwitcher';
-import { withAuthSeller } from '../../helpers/Auth';
+import { withAuthSeller, doLogout } from '../../helpers/Auth';
 
 function Seller() {
   return (
@@ -10,6 +10,7 @@ function Seller() {
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
           <Text>Welcome Seller!</Text>
+          <Button onClick={doLogout}>Logout</Button>
         </VStack>
       </Grid>
     </Box>

@@ -26,10 +26,6 @@ function getToken() {
   return jwt.decode(getRawToken()) || false;
 }
 
-function getUserData() {
-  return JSON.parse(localStorage.getItem('userData'));
-}
-
 function isTokenValid() {
   let token = getToken();
   if (!token) return false;
@@ -45,6 +41,16 @@ function deleteUserData() {
 }
 
 // Exported
+function getUserData() {
+  return JSON.parse(localStorage.getItem('userData'));
+}
+
+async function doLogout() {
+  deleteUserData();
+  deleteToken();
+  window.location = '/';
+}
+
 async function doLogin(email, password) {
   let response = await fetch(getUrl('auth/local'), {
     method: 'POST',
@@ -126,4 +132,11 @@ function withAuthSeller(Component) {
   };
 }
 
-export { doLogin, withAuthCustomer, withAuthSeller, withAuthAll };
+export {
+  doLogout,
+  doLogin,
+  withAuthCustomer,
+  withAuthSeller,
+  withAuthAll,
+  getUserData,
+};

@@ -8,17 +8,15 @@ function Home() {
       <Grid minH="100vh" p={3}>
         <ColorModeSwitcher justifySelf="flex-end" />
         <VStack spacing={8}>
-          <Text>
-            Edit <Code fontSize="xl">src/Home.js</Code> and save to reload.
-          </Text>
+          <Text>Hello, please login!</Text>
           <Link
             color="teal.500"
-            href="https://chakra-ui.com"
+            href="/login"
             fontSize="2xl"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn Chakra
+            Login
           </Link>
         </VStack>
       </Grid>

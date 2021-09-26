@@ -11,7 +11,7 @@ import {
 import React, { useState } from 'react';
 import { PasswordField } from './PasswordField';
 import RadioCard from './RadioCard';
-import { doLogin } from '../../helpers/Auth';
+import { doLogin, getUserData } from '../../helpers/Auth';
 
 export const LoginForm = props => {
   const options = ['Seller', 'Customer'];
@@ -30,7 +30,7 @@ export const LoginForm = props => {
         const email = e.target[0].value;
         const password = e.target[2].value;
         if ((await doLogin(email, password)) === true) {
-          window.location = '/customer';
+          window.location = getUserData().eCommerceRole;
         }
       }}
       {...props}
