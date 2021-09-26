@@ -11,6 +11,7 @@ import {
 import React, { useState } from 'react';
 import { PasswordField } from './PasswordField';
 import RadioCard from './RadioCard';
+import { doLogin } from '../../helpers/Auth';
 
 export const LoginForm = props => {
   const options = ['Seller', 'Customer'];
@@ -24,11 +25,13 @@ export const LoginForm = props => {
   const group = getRootProps();
   return (
     <chakra.form
-      onSubmit={e => {
+      onSubmit={async e => {
         e.preventDefault();
         const email = e.target[0].value;
         const password = e.target[2].value;
-        console.log(email, password, role);
+        if ((await doLogin(email, password)) === true) {
+          window.location = '/customer';
+        }
       }}
       {...props}
     >
