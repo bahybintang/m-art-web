@@ -65,8 +65,14 @@ async function doLogin(email, password) {
     saveUserData(data.user);
     saveToken(data.jwt);
     return true;
+  } else {
+    try {
+      let data = await response.json();
+      return data.message[0].messages[0].message;
+    } catch (_) {
+      return "Something is wrong"
+    }
   }
-  return response.status;
 }
 
 function withAuthAll(Component) {
