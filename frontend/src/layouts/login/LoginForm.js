@@ -14,10 +14,10 @@ import RadioCard from './RadioCard';
 
 export const LoginForm = props => {
   const options = ['Seller', 'Buyer'];
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState('Buyer');
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'framework',
-    defaultValue: 'react',
+    defaultValue: 'Buyer',
     onChange: setRole,
   });
 
@@ -26,7 +26,9 @@ export const LoginForm = props => {
     <chakra.form
       onSubmit={e => {
         e.preventDefault();
-        // your login logic here
+        const email = e.target[0].value;
+        const password = e.target[2].value;
+        console.log(email, password, role);
       }}
       {...props}
     >
