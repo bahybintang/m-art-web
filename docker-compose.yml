@@ -26,3 +26,10 @@ services:
       MYSQL_DATABASE: strapi
       MYSQL_USER: strapi
       MYSQL_PASSWORD: strapi
+
+  frontend:
+    build: frontend
+    depends_on:
+      - strapi
+    ports:
+      - "7777:80"
