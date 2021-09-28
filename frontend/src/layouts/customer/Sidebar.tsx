@@ -44,9 +44,8 @@ interface LinkItemProps {
   link: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome, link: '/seller' },
-  { name: 'My Products', icon: FiTrendingUp, link: '/seller/products' },
-  { name: 'Profile', icon: FiCompass, link: '/seller/profile' },
+  { name: 'Home', icon: FiHome, link: '/customer' },
+  { name: 'Profile', icon: FiCompass, link: '/customer/profile' },
   // { name: 'Favourites', icon: FiStar, link: '#' },
   // { name: 'Settings', icon: FiSettings, link: '#' },
 ];
@@ -236,7 +235,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             >
               <MenuItem
                 onClick={() => {
-                  history.push('/seller/profile');
+                  history.push('/customer/profile');
                 }}
               >
                 Profile
