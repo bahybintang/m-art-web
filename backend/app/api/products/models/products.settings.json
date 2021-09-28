@@ -39,7 +39,7 @@
       "type": "float",
       "required": true
     },
-    "users_permissions_user": {
+    "seller": {
       "plugin": "users-permissions",
       "model": "user"
     }

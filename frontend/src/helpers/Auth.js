@@ -40,7 +40,31 @@ function deleteUserData() {
   localStorage.removeItem('userData');
 }
 
+function isLoggedIn() {
+  try {
+    return isTokenValid();
+  } catch (err) {
+    return false;
+  }
+}
+
 // Exported
+async function fetchWithAuth(url, options) {
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+
+  if (isLoggedIn()) {
+    headers['Authorization'] = 'Bearer ' + getRawToken();
+  }
+
+  return await fetch(url, {
+    headers,
+    ...options,
+  });
+}
+
 function getUserData() {
   return JSON.parse(localStorage.getItem('userData'));
 }
@@ -52,7 +76,7 @@ async function doLogout() {
 }
 
 async function doLogin(email, password) {
-  let response = await fetch(getUrl('auth/local'), {
+  let response = await fetch(getUrl('/auth/local'), {
     method: 'POST',
     body: JSON.stringify({
       identifier: email,
@@ -76,7 +100,7 @@ async function doLogin(email, password) {
 }
 
 async function doRegister(email, username, password, role) {
-  let response = await fetch(getUrl('auth/local/register'), {
+  let response = await fetch(getUrl('/auth/local/register'), {
     method: 'POST',
     body: JSON.stringify({
       email: email,
@@ -172,4 +196,5 @@ export {
   withAuthSeller,
   withAuthAll,
   getUserData,
+  fetchWithAuth,
 };
