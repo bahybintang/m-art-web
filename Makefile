@@ -1,7 +1,7 @@
 build:
 	docker-compose -f docker-compose.yml build $(c)
 up-build:
-	docker-compose -f docker-compose.yml up -d --build $(c)
+	docker-compose -f docker-compose.yml up -d --build --no-cache $(c)
 up:
 	docker-compose -f docker-compose.yml up -d $(c)
 start:
