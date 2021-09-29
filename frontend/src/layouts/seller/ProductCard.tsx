@@ -28,7 +28,7 @@ export default function ProductSimple(ProductData: ProductDataProps) {
         boxShadow={'2xl'}
         rounded={'lg'}
         pos={'relative'}
-        zIndex={1}
+        // zIndex={1}
       >
         <Box
           rounded={'lg'}
