@@ -22,4 +22,5 @@ jobs:
             cd /home/ppl/m-art-web
             git pull origin master
             make down
-            make up-build
+            make build
+            make up
