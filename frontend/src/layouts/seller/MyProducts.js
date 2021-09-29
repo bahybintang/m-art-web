@@ -16,7 +16,7 @@ function MyProducts() {
           name: e.product_name,
           price: e.price,
           seller: e.seller.username,
-          image: Config.API_URL + e.photos[0].formats.medium.url,
+          image: Config.API_URL + e.photos[0].formats.thumbnail.url,
         }))
       );
     })();
