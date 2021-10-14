@@ -10,7 +10,9 @@ import Config from '../../config';
 
 export const ShowProduct = props => {
   const { product } = props;
+  console.log(product);
   const photo = product ? Config.API_URL + product.photos[0].formats.thumbnail.url : "";
+  const seller = product ? product.seller : "";
   return (
     <chakra.form>
       <Stack spacing="6">
@@ -23,6 +25,9 @@ export const ShowProduct = props => {
         </Center>
         <FormControl id="product-name">
           <FormLabel> <b>Product Name</b> : {product ? product.product_name :  "" }</FormLabel>
+        </FormControl>
+        <FormControl id="seller">
+          <FormLabel> <b>Seller</b> : {seller ? seller.username :  "" }</FormLabel>
         </FormControl>
         <FormControl id="description">
           <FormLabel><b>Description</b></FormLabel>
