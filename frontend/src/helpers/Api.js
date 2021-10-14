@@ -1,4 +1,4 @@
-import { fetchWithAuth } from './Auth';
+import { fetchWithAuth, fetchFormData, getUserData } from './Auth';
 import Config from '../config';
 
 function getUrl(path) {
@@ -17,10 +17,37 @@ async function getProductById(id) {
   return data;
 }
 
+async function addProduct(product_name, description, stock, price, photo) {
+  // Upload image
+  console.log(photo);
+  let formData = new FormData();
+  formData.append('files', photo);
+  let response = await fetchFormData(getUrl('/upload'), {
+    method: 'POST',
+    body: formData,
+  });
+  let data = await response.json();
+  const photoId = data[0].id;
+
+  response = await fetchWithAuth(getUrl('/products'), {
+    method: 'POST',
+    body: JSON.stringify({
+      product_name,
+      description,
+      stock,
+      price,
+      seller: getUserData().id,
+      photos: [photoId],
+    }),
+  });
+  data = await response.json();
+  return data;
+}
+
 async function getAllProductsBySellerId(id) {
   let response = await fetchWithAuth(getUrl('/products?seller.id=' + id));
   let data = await response.json();
   return data;
 }
 
-export { getAllProducts, getAllProductsBySellerId, getProductById };
+export { getAllProducts, getAllProductsBySellerId, getProductById, addProduct };

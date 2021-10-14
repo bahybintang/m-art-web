@@ -14,8 +14,8 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { doRegister, getUserData } from '../../helpers/Auth';
+import { addProduct } from '../../helpers/Api';
+import { useHistory } from 'react-router-dom';
 
 function toTitleCase(str) {
   return str.replace(/\w\S*/g, function (txt) {
@@ -24,35 +24,45 @@ function toTitleCase(str) {
 }
 
 export const ProductForm = props => {
-  const userData = getUserData();
+  const history = useHistory();
   const toast = useToast();
-  const options = ['Seller', 'Customer'];
-  const [role, setRole] = useState('Customer');
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'framework',
-    defaultValue: toTitleCase(userData.eCommerceRole),
-    onChange: setRole,
-  });
 
-  const group = getRootProps();
   return (
     <chakra.form
       onSubmit={async e => {
         e.preventDefault();
+        const product_name = e.target[0].value;
+        const description = e.target[1].value;
+        const stock = e.target[2].value;
+        const price = e.target[3].value;
+        const photo = e.target[4].files[0];
 
-        // Not implemented
-        // const result = await doRegister(email, username, password, role);
-        // if (result === true) {
-        //   window.location = '/login';
-        // } else {
-        //   toast({
-        //     title: 'Login failed',
-        //     description: result,
-        //     status: 'warning',
-        //     duration: 3000,
-        //     isClosable: true,
-        //   });
-        // }
+        toast({
+          title: 'Adding Product',
+          description: 'Product is being added!',
+          duration: 10000,
+          isClosable: true,
+        });
+
+        const result = await addProduct(
+          product_name,
+          description,
+          stock,
+          price,
+          photo
+        );
+
+        if (result.statusCode === 200 || !!result.id) {
+          history.push('/seller');
+        } else {
+          toast({
+            title: 'Add Product Failed',
+            description: result.message || 'Some error occurred!',
+            status: 'warning',
+            duration: 3000,
+            isClosable: true,
+          });
+        }
       }}
       {...props}
     >
@@ -101,12 +111,7 @@ export const ProductForm = props => {
         </FormControl>
         <FormControl id="photo">
           <FormLabel>Photo</FormLabel>
-          <Input
-            name="photo"
-            placeholder="Photo"
-            type="file"
-            required
-          />
+          <Input name="photo" placeholder="Photo" type="file" required />
         </FormControl>
         <Button type="submit" colorScheme="blue" size="lg" fontSize="md">
           Add

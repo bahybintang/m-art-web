@@ -65,6 +65,21 @@ async function fetchWithAuth(url, options) {
   });
 }
 
+async function fetchFormData(url, options) {
+  const headers = {
+    Accept: 'application/json',
+  };
+
+  if (isLoggedIn()) {
+    headers['Authorization'] = 'Bearer ' + getRawToken();
+  }
+
+  return await fetch(url, {
+    headers,
+    ...options,
+  });
+}
+
 function getUserData() {
   return JSON.parse(localStorage.getItem('userData'));
 }
@@ -197,4 +212,5 @@ export {
   withAuthAll,
   getUserData,
   fetchWithAuth,
+  fetchFormData,
 };
