@@ -44,10 +44,24 @@ async function addProduct(product_name, description, stock, price, photo) {
   return data;
 }
 
+async function deleteProductById(id) {
+  let response = await fetchWithAuth(getUrl('/products/' + id), {
+    method: 'DELETE',
+  });
+  let data = await response.json();
+  return data;
+}
+
 async function getAllProductsBySellerId(id) {
   let response = await fetchWithAuth(getUrl('/products?seller.id=' + id));
   let data = await response.json();
   return data;
 }
 
-export { getAllProducts, getAllProductsBySellerId, getProductById, addProduct };
+export {
+  getAllProducts,
+  getAllProductsBySellerId,
+  getProductById,
+  addProduct,
+  deleteProductById,
+};

@@ -40,7 +40,7 @@ export const ProductForm = props => {
         toast({
           title: 'Adding Product',
           description: 'Product is being added!',
-          duration: 10000,
+          duration: 2000,
           isClosable: true,
         });
 
@@ -52,8 +52,8 @@ export const ProductForm = props => {
           photo
         );
 
-        if (result.statusCode === 200 || !!result.id) {
-          history.push('/seller');
+        if (!result.statusCode) {
+          history.push('/seller/products');
         } else {
           toast({
             title: 'Add Product Failed',
