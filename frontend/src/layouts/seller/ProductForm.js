@@ -12,7 +12,7 @@ import {
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
-  NumberDecrementStepper
+  NumberDecrementStepper,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { doRegister, getUserData } from '../../helpers/Auth';
@@ -39,10 +39,6 @@ export const ProductForm = props => {
     <chakra.form
       onSubmit={async e => {
         e.preventDefault();
-        const email = e.target[0].value;
-        const username = e.target[1].value;
-        const password = e.target[3].value;
-        // const password_confrimation = e.target[5].value;
 
         // Not implemented
         // const result = await doRegister(email, username, password, role);
@@ -76,35 +72,44 @@ export const ProductForm = props => {
           <Textarea placeholder="Description" />
         </FormControl>
         <FormControl id="Stock">
-        <FormLabel>Stock</FormLabel>
-        <NumberInput
-          defaultValue={0}
-          keepWithinRange={false}
-          clampValueOnBlur={false}
-        >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>      
-        </FormControl>      
+          <FormLabel>Stock</FormLabel>
+          <NumberInput
+            defaultValue={0}
+            keepWithinRange={false}
+            clampValueOnBlur={false}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </FormControl>
         <FormControl id="Price">
-        <FormLabel>Price</FormLabel>
-        <NumberInput
-          defaultValue={0}
-          keepWithinRange={false}
-          clampValueOnBlur={false}
-        >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>      
-        </FormControl>   
+          <FormLabel>Price</FormLabel>
+          <NumberInput
+            defaultValue={0}
+            keepWithinRange={false}
+            clampValueOnBlur={false}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </FormControl>
+        <FormControl id="photo">
+          <FormLabel>Photo</FormLabel>
+          <Input
+            name="photo"
+            placeholder="Photo"
+            type="file"
+            required
+          />
+        </FormControl>
         <Button type="submit" colorScheme="blue" size="lg" fontSize="md">
-          Save
+          Add
         </Button>
       </Stack>
     </chakra.form>

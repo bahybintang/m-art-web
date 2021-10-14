@@ -12,7 +12,7 @@ function AddProduct() {
     >
       <Box maxW="md" mx="auto">
         <Heading textAlign="center" size="xl" fontWeight="extrabold">
-          Akun Anda
+          Tambah Produk
         </Heading>
         <Card>
           <ProductForm />
