@@ -21,9 +21,6 @@ export const ShowProduct = props => {
             src={photo}
         />
         </Center>
-        <FormControl id="photo">
-          <FormLabel>Photo</FormLabel>
-        </FormControl>
         <FormControl id="product-name">
           <FormLabel> <b>Product Name</b> : {product ? product.product_name :  "" }</FormLabel>
         </FormControl>
