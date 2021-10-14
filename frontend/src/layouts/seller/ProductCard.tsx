@@ -7,6 +7,7 @@ import {
   Stack,
   Image,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 
 interface ProductDataProps {
   image: string;
@@ -17,6 +18,7 @@ interface ProductDataProps {
 }
 
 export default function ProductSimple(ProductData: ProductDataProps) {
+  const history = useHistory();
   return (
     <Center py={12}>
       <Box
@@ -28,6 +30,10 @@ export default function ProductSimple(ProductData: ProductDataProps) {
         boxShadow={'2xl'}
         rounded={'lg'}
         pos={'relative'}
+        onClick={() => {
+          history.push('/seller/products/' + ProductData.id);
+        }}
+        style={{ cursor: 'pointer' }}
         // zIndex={1}
       >
         <Box

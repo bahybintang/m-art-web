@@ -11,10 +11,16 @@ async function getAllProducts() {
   return data;
 }
 
+async function getProductById(id) {
+  let response = await fetchWithAuth(getUrl('/products/' + id));
+  let data = await response.json();
+  return data;
+}
+
 async function getAllProductsBySellerId(id) {
   let response = await fetchWithAuth(getUrl('/products?seller.id=' + id));
   let data = await response.json();
   return data;
 }
 
-export { getAllProducts, getAllProductsBySellerId };
+export { getAllProducts, getAllProductsBySellerId, getProductById };
