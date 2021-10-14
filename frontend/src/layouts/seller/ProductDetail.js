@@ -1,4 +1,4 @@
-import { ProductForm } from './ProductForm';
+import { ShowProduct } from './ShowProduct';
 import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { Card } from './Card';
 import { useParams } from 'react-router-dom';
@@ -12,7 +12,6 @@ function ProductDetail() {
     (async function () {
       const data = await getProductById(id);
       setProduct(data);
-      console.log(data);
     })();
   }, [id]);
 
@@ -28,7 +27,7 @@ function ProductDetail() {
           Detail Produk
         </Heading>
         <Card>
-          <ProductForm />
+          <ShowProduct product={product}/>
         </Card>
       </Box>
     </Box>
