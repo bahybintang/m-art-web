@@ -1,4 +1,4 @@
-import { ProfileForm } from './ProfileForm';
+import { ProductForm } from './ProductForm';
 import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { Card } from './Card';
 
@@ -15,7 +15,7 @@ function AddProduct() {
           Akun Anda
         </Heading>
         <Card>
-          <ProfileForm />
+          <ProductForm />
         </Card>
       </Box>
     </Box>
