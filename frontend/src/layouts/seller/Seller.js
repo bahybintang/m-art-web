@@ -11,8 +11,8 @@ function Seller(props) {
   return (
     <Sidebar>
       <Switch>
-        <Route path="/seller/products/:id" component={ProductDetail} />
         <Route path="/seller/products/add" component={AddProduct} />
+        <Route path="/seller/products/:id" component={ProductDetail} />
         <Route path="/seller/products" component={MyProducts} />
         <Route path="/seller/profile" component={Profile} />
         <Route path="/seller" component={Home} />

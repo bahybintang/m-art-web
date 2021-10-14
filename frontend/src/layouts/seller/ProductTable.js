@@ -15,15 +15,21 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
+  useToast,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+import { deleteProductById } from '../../helpers/Api';
+import { useState } from 'react';
+import { createLogicalOr } from 'typescript';
 
 function ProductTable(props) {
+  const toast = useToast();
   const history = useHistory();
-  const { products } = props;
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const { products, toggleRefetch } = props;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Table variant="simple">
@@ -61,7 +67,15 @@ function ProductTable(props) {
             <Td>
               <Grid>
                 <Button colorScheme="blue">Edit</Button>
-                <Button onClick={onOpen} colorScheme="red">Delete</Button>
+                <Button
+                  onClick={() => {
+                    setSelectedProduct(e.id);
+                    onOpen();
+                  }}
+                  colorScheme="red"
+                >
+                  Delete
+                </Button>
               </Grid>
             </Td>
           </Tr>
@@ -77,7 +91,36 @@ function ProductTable(props) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="red" mr={3}>
+            <Button
+              colorScheme="red"
+              mr={3}
+              onClick={async e => {
+                toast({
+                  title: 'Deleting Product',
+                  description: 'Product is being deleted!',
+                  duration: 2000,
+                  isClosable: true,
+                });
+
+                const result = await deleteProductById(selectedProduct);
+
+                console.log(result);
+
+                if (!result.statusCode) {
+                  history.push('/seller/products');
+                  toggleRefetch();
+                  onClose();
+                } else {
+                  toast({
+                    title: 'Delete Product Failed',
+                    description: result.message || 'Some error occurred!',
+                    status: 'warning',
+                    duration: 3000,
+                    isClosable: true,
+                  });
+                }
+              }}
+            >
               Delete
             </Button>
             <Button onClick={onClose}>Cancel</Button>

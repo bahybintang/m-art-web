@@ -8,6 +8,7 @@ import { getUserData } from '../../helpers/Auth';
 
 function MyProducts() {
   const [items, setItems] = useState([]);
+  const [refetch, setRefetch] = useState(true);
   useEffect(() => {
     (async function () {
       const data = await getAllProductsBySellerId(getUserData().id);
@@ -23,9 +24,13 @@ function MyProducts() {
         }))
       );
     })();
-  }, []);
+  }, [refetch]);
 
-  return <ProductTable products={items} />;
+  function toggleRefetch() {
+    setRefetch(!refetch);
+  }
+
+  return <ProductTable products={items} toggleRefetch={toggleRefetch} />;
 }
 
 export default MyProducts;
