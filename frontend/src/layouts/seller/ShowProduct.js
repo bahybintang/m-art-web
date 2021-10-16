@@ -1,12 +1,14 @@
 import {
-  chakra,
   FormControl,
   FormLabel,
   Stack,
   Image,
-  Center
+  Center,
+  Button
 } from '@chakra-ui/react';
 import Config from '../../config';
+import { addToChart } from '../../helpers/AddToChart';
+import { Card } from '../login/Card';
 
 export const ShowProduct = props => {
   const { product } = props;
@@ -14,7 +16,7 @@ export const ShowProduct = props => {
   const photo = product ? Config.API_URL + product.photos[0].formats.thumbnail.url : "";
   const seller = product ? product.seller : "";
   return (
-    <chakra.form>
+    <Card>
       <Stack spacing="6">
         <Center>
         <Image
@@ -39,7 +41,10 @@ export const ShowProduct = props => {
         <FormControl id="Price">
           <FormLabel><b>Price</b> : {product ? product.price : ""}</FormLabel>
         </FormControl>
+        <Button onClick={() => addToChart(product)} colorScheme="green" mr={3}>
+              Add to Chart
+        </Button>
       </Stack>
-    </chakra.form>
+    </Card>
   );
 };
