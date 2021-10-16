@@ -10,6 +10,7 @@ services:
       DATABASE_USERNAME: strapi
       DATABASE_PASSWORD: strapi
       DATABASE_SSL: "false"
+    restart: unless-stopped
     volumes:
       - ./backend/app:/srv/app
     ports:
@@ -19,6 +20,7 @@ services:
 
   mariadb:
     image: mariadb
+    restart: unless-stopped
     volumes:
       - ./data:/var/lib/mysql
     environment:
@@ -29,6 +31,7 @@ services:
 
   frontend:
     build: frontend
+    restart: unless-stopped
     depends_on:
       - strapi
     ports:
