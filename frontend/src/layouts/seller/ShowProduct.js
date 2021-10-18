@@ -6,6 +6,7 @@ import {
   Center,
   Button,
   Input,
+  useToast,
 } from '@chakra-ui/react';
 import Config from '../../config';
 import { addToCart } from '../../helpers/AddToCart';
@@ -17,6 +18,17 @@ export const ShowProduct = props => {
   const photo = Config.API_URL + product.photos[0].formats.thumbnail.url;
   const seller = product.seller;
   const [qty, setQty] = useState(0);
+  const toast = useToast();
+
+  function doAddToCart(product, qty) {
+    toast({
+      title: 'Added to Cart!',
+      status: 'info',
+      duration: 2000,
+      isClosable: true,
+    });
+    addToCart(product, qty);
+  }
 
   return (
     <Card>
@@ -62,7 +74,11 @@ export const ShowProduct = props => {
             required
           />
         </FormControl>
-        <Button onClick={() => addToCart(product, qty)} colorScheme="green" mr={3}>
+        <Button
+          onClick={() => doAddToCart(product, qty)}
+          colorScheme="green"
+          mr={3}
+        >
           Add to Cart
         </Button>
       </Stack>

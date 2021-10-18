@@ -30,7 +30,7 @@ function deleteProduct(idProduct) {
 }
 
 function getCart() {
-  return getDataFromLocal('cart');
+  return getDataFromLocal('cart') || [];
 }
 
 function emptyCart() {

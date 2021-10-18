@@ -4,11 +4,13 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import Profile from './Profile';
 import ProductDetail from './ProductDetail';
+import Cart from './Cart';
 
 function Customer(props) {
   return (
     <Sidebar>
       <Switch>
+        <Route path="/customer/cart" component={Cart} />
         <Route path="/customer/products/:id" component={ProductDetail} />
         <Route path="/customer/profile" component={Profile} />
         <Route path="/customer" component={Home} />
