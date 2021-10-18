@@ -17,7 +17,7 @@ export const ShowProduct = props => {
   const { product } = props;
   const photo = Config.API_URL + product.photos[0].formats.thumbnail.url;
   const seller = product.seller;
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const toast = useToast();
 
   function doAddToCart(product, qty) {
