@@ -32,6 +32,7 @@ import {
   FiBell,
   FiChevronDown,
 } from 'react-icons/fi';
+import { TiShoppingCart } from 'react-icons/ti';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { doLogout, getUserData } from '../../helpers/Auth';
@@ -45,6 +46,7 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, link: '/seller' },
+  { name: 'Cart', icon: TiShoppingCart, link: '/seller/cart' },
   { name: 'My Products', icon: FiTrendingUp, link: '/seller/products' },
   { name: 'Profile', icon: FiCompass, link: '/seller/profile' },
   // { name: 'Favourites', icon: FiStar, link: '#' },
