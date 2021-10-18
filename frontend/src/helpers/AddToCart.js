@@ -6,8 +6,8 @@ function getDataFromLocal(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function addToChart(product) {
-  var products = getChart();
+function addToCart(product) {
+  var products = getCart();
   if (products == null) {
     products = [product];
     saveToLocal('chart', products);
@@ -19,26 +19,26 @@ function addToChart(product) {
 }
 
 function deleteProduct(idProduct) {
-  var products = getChart();
+  var products = getCart();
   if (products == null) return null;
 
   products = products.filter(function (obj) {
     return obj.id !== idProduct;
   });
-  return saveToLocal('chart', products);
+  return saveToLocal('cart', products);
 }
 
-function getChart() {
+function getCart() {
   return getDataFromLocal('chart');
 }
 
-function emptyChart() {
+function emptyCart() {
   localStorage.removeItem('chart');
 }
 
 export {
-  addToChart,
-  getChart,
+  addToCart,
+  getCart,
   deleteProduct,
-  emptyChart,
+  emptyCart,
 };

@@ -7,7 +7,7 @@ import {
   Button
 } from '@chakra-ui/react';
 import Config from '../../config';
-import { addToChart } from '../../helpers/AddToChart';
+import { addToCart } from '../../helpers/AddToCart';
 import { Card } from '../login/Card';
 
 export const ShowProduct = props => {
@@ -41,7 +41,7 @@ export const ShowProduct = props => {
         <FormControl id="Price">
           <FormLabel><b>Price</b> : {product ? product.price : ""}</FormLabel>
         </FormControl>
-        <Button onClick={() => addToChart(product)} colorScheme="green" mr={3}>
+        <Button onClick={() => addToCart(product)} colorScheme="green" mr={3}>
               Add to Cart
         </Button>
       </Stack>

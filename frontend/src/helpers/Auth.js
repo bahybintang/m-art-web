@@ -40,6 +40,10 @@ function deleteUserData() {
   localStorage.removeItem('userData');
 }
 
+function deleteCart() {
+  
+}
+
 function isLoggedIn() {
   try {
     return isTokenValid();
