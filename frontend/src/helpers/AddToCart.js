@@ -3,34 +3,29 @@ function saveToLocal(key, item) {
 }
 
 function getDataFromLocal(key) {
-  return JSON.parse(localStorage.getItem(key));
+  return JSON.parse(localStorage.getItem(key)) || {};
 }
 
 function addToCart(product, qty = 1) {
   product = { ...product, qty };
-  var products = getCart();
-  if (products == null) {
-    products = [product];
-    saveToLocal('cart', products);
-    return products;
-  }
-
-  products.push(product);
-  saveToLocal('cart', products);
+  var products = getDataFromLocal('cart');
+  var curProdQty = !!products[product.id] ? products[product.id].qty : 0;
+  saveToLocal('cart', {
+    ...products,
+    [product.id]: { ...product, qty: curProdQty + product.qty },
+  });
 }
 
 function deleteProduct(idProduct) {
-  var products = getCart();
-  if (products == null) return null;
-
-  products = products.filter(function (obj) {
-    return obj.id !== idProduct;
-  });
+  var products = getDataFromLocal('cart');
+  delete products[idProduct];
   return saveToLocal('cart', products);
 }
 
 function getCart() {
-  return getDataFromLocal('cart') || [];
+  let carts = getDataFromLocal('cart');
+  let arrayCart = Object.values(carts);
+  return arrayCart;
 }
 
 function emptyCart() {

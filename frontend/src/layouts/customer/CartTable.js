@@ -20,7 +20,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-import { deleteProductById } from '../../helpers/Api';
+import { deleteProduct } from '../../helpers/AddToCart';
 import { useState } from 'react';
 import { createLogicalOr } from 'typescript';
 
@@ -86,31 +86,23 @@ function CartTable(props) {
             <Button
               colorScheme="red"
               mr={3}
-              onClick={async e => {
+              onClick={() => {
                 toast({
                   title: 'Deleting Product',
                   description: 'Product is being deleted!',
                   duration: 2000,
                   isClosable: true,
                 });
-
-                const result = await deleteProductById(selectedProduct);
-
-                console.log(result);
-
-                if (!result.statusCode) {
-                  history.push('/seller/products');
-                  toggleRefetch();
-                  onClose();
-                } else {
-                  toast({
-                    title: 'Delete Product Failed',
-                    description: result.message || 'Some error occurred!',
-                    status: 'warning',
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }
+                deleteProduct(selectedProduct);
+                toast({
+                  title: 'Delete Success!',
+                  status: 'success',
+                  duration: 2000,
+                  isClosable: true,
+                });
+                history.push('/customer/cart');
+                toggleRefetch();
+                onClose();
               }}
             >
               Delete
