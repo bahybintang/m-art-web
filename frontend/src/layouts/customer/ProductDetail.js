@@ -7,7 +7,24 @@ import { getProductById } from '../../helpers/Api';
 
 function ProductDetail() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState({
+    product_name: '',
+    price: 0,
+    stock: 0,
+    description: '',
+    seller: {
+      username: '',
+    },
+    photos: [
+      {
+        formats: {
+          thumbnail: {
+            url: '/assets/images/logo_login.png',
+          },
+        },
+      },
+    ],
+  });
   useEffect(() => {
     (async function () {
       const data = await getProductById(id);
@@ -27,7 +44,7 @@ function ProductDetail() {
           Detail Produk
         </Heading>
         <Card>
-          <ShowProduct product={product}/>
+          <ShowProduct product={product} />
         </Card>
       </Box>
     </Box>

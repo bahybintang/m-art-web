@@ -6,7 +6,8 @@ function getDataFromLocal(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function addToCart(product) {
+function addToCart(product, qty = 1) {
+  product = { ...product, qty };
   var products = getCart();
   if (products == null) {
     products = [product];
@@ -36,9 +37,4 @@ function emptyCart() {
   localStorage.removeItem('cart');
 }
 
-export {
-  addToCart,
-  getCart,
-  deleteProduct,
-  emptyCart,
-};
+export { addToCart, getCart, deleteProduct, emptyCart };
