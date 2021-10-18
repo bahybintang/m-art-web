@@ -10,12 +10,12 @@ function addToCart(product) {
   var products = getCart();
   if (products == null) {
     products = [product];
-    saveToLocal('chart', products);
+    saveToLocal('cart', products);
     return products;
   }
 
   products.push(product);
-  saveToLocal('chart', products);
+  saveToLocal('cart', products);
 }
 
 function deleteProduct(idProduct) {
@@ -29,11 +29,11 @@ function deleteProduct(idProduct) {
 }
 
 function getCart() {
-  return getDataFromLocal('chart');
+  return getDataFromLocal('cart');
 }
 
 function emptyCart() {
-  localStorage.removeItem('chart');
+  localStorage.removeItem('cart');
 }
 
 export {

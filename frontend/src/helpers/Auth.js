@@ -41,7 +41,7 @@ function deleteUserData() {
 }
 
 function deleteCart() {
-  
+  localStorage.removeItem('cart');
 }
 
 function isLoggedIn() {
@@ -91,6 +91,7 @@ function getUserData() {
 async function doLogout() {
   deleteUserData();
   deleteToken();
+  deleteCart();
   window.location = '/';
 }
 
