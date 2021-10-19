@@ -16,17 +16,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Change directory to frontend
-        run: cd frontend
       - name: Install dependencies
+        working-directory: ./frontend
         run: yarn install
       - name: Generate build
+        working-directory: ./frontend
         run: yarn build
-      - name: Share artifact inside workflow
+      - name: Share artifact inside
         uses: actions/upload-artifact@v1
         with:
           name: mart
-          path: build
+          path: ./frontend/build
 
   deploy-be:
     runs-on: ubuntu-latest
