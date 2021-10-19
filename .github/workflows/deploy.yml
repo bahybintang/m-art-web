@@ -7,20 +7,67 @@ on:
     branches: [master]
 
 jobs:
-  deploy:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install dependencies
+        run: yarn install
+      - name: Generate build
+        run: yarn build
+      - name: Share artifact inside workflow
+        uses: actions/upload-artifact@v1
+        with:
+          name: mart
+          path: build
+
+  deploy-be:
     runs-on: ubuntu-latest
     if: ${{ (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true) || github.event_name == 'push' }}
     steps:
-      - name: SSH and deploy node app
+      - name: SSH and deploy backend
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          command_timeout: 120m
           script: |
             cd /home/ppl/m-art-web
             git pull origin master
-            make build
-            make down
-            make up
+            make deploy-down
+            make deploy
+
+  remove-old-build:
+    runs-on: ubuntu-latest
+    if: ${{ (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true) || github.event_name == 'push' }}
+    steps:
+      - name: Remove old build
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            rm -r /home/ppl/mart
+
+  deploy-fe:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get build
+        uses: actions/download-artifact@v1
+        with:
+          name: mart
+      - name: Copy build to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          source: "mart"
+          target: "/home/ppl/"

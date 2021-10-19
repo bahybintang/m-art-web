@@ -1,3 +1,7 @@
+deploy-down:
+	docker-compose -f docker-compose.prod.yml down $(c)
+deploy:
+	docker-compose -f docker-compose.prod.yml up -d $(c)
 build:
 	docker-compose -f docker-compose.yml build --no-cache $(c)
 up-build:
