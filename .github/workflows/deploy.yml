@@ -48,7 +48,7 @@ jobs:
 
   deploy-fe:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-fe
     steps:
       - name: Get build
         uses: actions/download-artifact@v1
