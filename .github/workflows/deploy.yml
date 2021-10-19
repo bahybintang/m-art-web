@@ -16,6 +16,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+      - name: Change directory to frontend
+        run: cd frontend
       - name: Install dependencies
         run: yarn install
       - name: Generate build
@@ -44,6 +46,7 @@ jobs:
 
   remove-old-build:
     runs-on: ubuntu-latest
+    needs: build
     if: ${{ (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true) || github.event_name == 'push' }}
     steps:
       - name: Remove old build
@@ -57,7 +60,7 @@ jobs:
 
   deploy-fe:
     runs-on: ubuntu-latest
-    needs: build
+    needs: remove-old-build
     steps:
       - name: Get build
         uses: actions/download-artifact@v1
