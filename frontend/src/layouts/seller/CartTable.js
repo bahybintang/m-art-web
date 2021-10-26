@@ -22,7 +22,6 @@ import {
 import { useHistory } from 'react-router-dom';
 import { deleteProduct } from '../../helpers/AddToCart';
 import { useState } from 'react';
-import { createLogicalOr } from 'typescript';
 
 function CartTable(props) {
   const toast = useToast();
@@ -41,7 +40,17 @@ function CartTable(props) {
           <Th isNumeric>Stock</Th>
           <Th isNumeric>Price</Th>
           <Th isNumeric>Quantity</Th>
-          <Th></Th>
+          <Th>
+            <Button
+              colorScheme="green"
+              variant="solid"
+              onClick={() => {
+                history.push('/seller/checkout');
+              }}
+            >
+              Checkout
+            </Button>
+          </Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -81,7 +90,6 @@ function CartTable(props) {
           <ModalBody pb={6}>
             <p>Are you sure you want to delete this item?</p>
           </ModalBody>
-
           <ModalFooter>
             <Button
               colorScheme="red"

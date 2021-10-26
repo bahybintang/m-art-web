@@ -7,11 +7,13 @@ import Profile from './Profile';
 import AddProduct from './AddProduct';
 import ProductDetail from './ProductDetail';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 function Seller(props) {
   return (
     <Sidebar>
       <Switch>
+        <Route path="/seller/checkout" component={Checkout} />
         <Route path="/seller/cart" component={Cart} />
         <Route path="/seller/products/add" component={AddProduct} />
         <Route path="/seller/products/:id" component={ProductDetail} />
