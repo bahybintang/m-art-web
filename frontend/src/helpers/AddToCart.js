@@ -12,7 +12,11 @@ function addToCart(product, qty = 1) {
   var curProdQty = !!products[product.id] ? products[product.id].qty : 0;
   saveToLocal('cart', {
     ...products,
-    [product.id]: { ...product, qty: curProdQty + product.qty },
+    [product.id]: {
+      ...product,
+      qty: curProdQty + product.qty,
+      stock: product.stock - (curProdQty + product.qty),
+    },
   });
 }
 
