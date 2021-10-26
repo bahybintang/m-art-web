@@ -3,7 +3,7 @@ import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { Card } from './Card';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getProductById } from '../../helpers/Api';
+import { getProductById, addClickProductTracker } from '../../helpers/Api';
 
 function ProductDetail() {
   const { id } = useParams();
@@ -28,6 +28,7 @@ function ProductDetail() {
   useEffect(() => {
     (async function () {
       const data = await getProductById(id);
+      addClickProductTracker(id);
       setProduct(data);
     })();
   }, [id]);

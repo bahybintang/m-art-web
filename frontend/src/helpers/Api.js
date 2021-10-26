@@ -19,7 +19,6 @@ async function getProductById(id) {
 
 async function addProduct(product_name, description, stock, price, photo) {
   // Upload image
-  console.log(photo);
   let formData = new FormData();
   formData.append('files', photo);
   let response = await fetchFormData(getUrl('/upload'), {
@@ -44,6 +43,20 @@ async function addProduct(product_name, description, stock, price, photo) {
   return data;
 }
 
+async function addClickProductTracker(product_id) {
+  const { id } = getUserData();
+  let response = await fetchWithAuth(getUrl('/trackers'), {
+    method: 'POST',
+    body: JSON.stringify({
+      product_id,
+      user_id: id,
+      event: 'click_product',
+    }),
+  });
+  let data = await response.json();
+  return data;
+}
+
 async function deleteProductById(id) {
   let response = await fetchWithAuth(getUrl('/products/' + id), {
     method: 'DELETE',
@@ -64,4 +77,5 @@ export {
   getProductById,
   addProduct,
   deleteProductById,
+  addClickProductTracker,
 };
