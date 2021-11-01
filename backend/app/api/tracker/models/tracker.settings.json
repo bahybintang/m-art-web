@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trackers",
+  "info": {
+    "name": "tracker"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product_id": {
+      "model": "products"
+    },
+    "user_id": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "event": {
+      "type": "string"
+    }
+  }
+}

@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/products": {
+    "/couriers": {
       "get": {
         "deprecated": false,
-        "description": "Find all the products's records",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Products"
+                    "$ref": "#/components/schemas/Courier"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Courier"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new products record",
+        "description": "Create a new record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "$ref": "#/components/schemas/Courier"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Courier"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProducts"
+                "$ref": "#/components/schemas/NewCourier"
               }
             }
           }
         }
       }
     },
-    "/products/count": {
+    "/couriers/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the number of products documents",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Courier"
         ],
         "parameters": []
       }
     },
-    "/products/{id}": {
+    "/couriers/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one products record",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "$ref": "#/components/schemas/Courier"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Courier"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single products record",
+        "description": "Update a record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "$ref": "#/components/schemas/Courier"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Courier"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProducts"
+                "$ref": "#/components/schemas/NewCourier"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single products record",
+        "description": "Delete a record",
         "responses": {
           "200": {
-            "description": "deletes a single products based on the ID supplied",
+            "description": "deletes a single record based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Courier"
         ],
         "parameters": [
           {
@@ -514,159 +514,19 @@
   },
   "components": {
     "schemas": {
-      "Products": {
+      "Courier": {
         "required": [
-          "id",
-          "product_name",
-          "description",
-          "price"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "product_name": {
+          "name": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
-          "photos": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "stock": {
-            "type": "integer",
-            "default": 0
-          },
-          "price": {
+          "price_per_km": {
             "type": "number"
-          },
-          "seller": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "eCommerceRole"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "eCommerceRole": {
-                "type": "string",
-                "enum": [
-                  "customer",
-                  "seller",
-                  "supplier"
-                ]
-              },
-              "addresses": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
           },
           "published_at": {
             "type": "string",
@@ -674,28 +534,13 @@
           }
         }
       },
-      "NewProducts": {
-        "required": [
-          "product_name",
-          "description",
-          "price"
-        ],
+      "NewCourier": {
         "properties": {
-          "product_name": {
+          "name": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
-          "stock": {
-            "type": "integer",
-            "default": 0
-          },
-          "price": {
+          "price_per_km": {
             "type": "number"
-          },
-          "seller": {
-            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -713,7 +558,7 @@
   },
   "tags": [
     {
-      "name": "Products"
+      "name": "Courier"
     }
   ]
 }

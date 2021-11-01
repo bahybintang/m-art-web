@@ -68,6 +68,10 @@
       ],
       "default": "customer",
       "required": true
+    },
+    "addresses": {
+      "via": "user_id",
+      "collection": "address"
     }
   }
 }

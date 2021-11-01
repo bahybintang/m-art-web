@@ -1,18 +1,19 @@
 {
   "paths": {
-    "/products": {
+    "/order-details": {
       "get": {
         "deprecated": false,
-        "description": "Find all the products's records",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Products"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -51,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Order-detail"
         ],
         "parameters": [
           {
@@ -194,79 +195,16 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new products record",
+        "description": "Create a new record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Products"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Products"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewProducts"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/products/count": {
-      "get": {
-        "deprecated": false,
-        "description": "Retrieve the number of products documents",
-        "responses": {
-          "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
-                    "count": {
-                      "type": "integer"
+                    "foo": {
+                      "type": "string"
                     }
                   }
                 }
@@ -306,22 +244,36 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Order-detail"
         ],
-        "parameters": []
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewOrder-detail"
+              }
+            }
+          }
+        }
       }
     },
-    "/products/{id}": {
+    "/order-details/count": {
       "get": {
         "deprecated": false,
-        "description": "Find one products record",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -359,7 +311,64 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Order-detail"
+        ],
+        "parameters": []
+      }
+    },
+    "/order-details/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Order-detail"
         ],
         "parameters": [
           {
@@ -376,14 +385,18 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single products record",
+        "description": "Update a record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -421,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Order-detail"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProducts"
+                "$ref": "#/components/schemas/NewOrder-detail"
               }
             }
           }
@@ -449,10 +462,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single products record",
+        "description": "Delete a record",
         "responses": {
           "200": {
-            "description": "deletes a single products based on the ID supplied",
+            "description": "deletes a single record based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Order-detail"
         ],
         "parameters": [
           {
@@ -514,151 +527,48 @@
   },
   "components": {
     "schemas": {
-      "Products": {
+      "Order-detail": {
         "required": [
-          "id",
-          "product_name",
-          "description",
-          "price"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "product_name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "photos": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "stock": {
-            "type": "integer",
-            "default": 0
-          },
-          "price": {
-            "type": "number"
-          },
-          "seller": {
+          "product_id": {
             "required": [
               "id",
-              "username",
-              "email",
-              "eCommerceRole"
+              "product_name",
+              "description",
+              "price"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "username": {
+              "product_name": {
                 "type": "string"
               },
-              "email": {
+              "description": {
                 "type": "string"
               },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "eCommerceRole": {
-                "type": "string",
-                "enum": [
-                  "customer",
-                  "seller",
-                  "supplier"
-                ]
-              },
-              "addresses": {
+              "photos": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
+              },
+              "stock": {
+                "type": "integer"
+              },
+              "price": {
+                "type": "number"
+              },
+              "seller": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
               },
               "created_by": {
                 "type": "string"
@@ -668,34 +578,147 @@
               }
             }
           },
+          "quantity": {
+            "type": "integer"
+          },
+          "unit_price": {
+            "type": "number"
+          },
+          "order_id": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "user_id": {
+                "type": "string"
+              },
+              "total_price": {
+                "type": "number"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "paid",
+                  "waiting",
+                  "sent",
+                  "received",
+                  "done"
+                ]
+              },
+              "order_details": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "courier_id": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "price_per_km": {
+                "type": "number"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "address_id": {
+            "required": [
+              "id",
+              "address"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "address": {
+                "type": "string"
+              },
+              "longitude": {
+                "type": "string"
+              },
+              "latitutude": {
+                "type": "string"
+              },
+              "recipient": {
+                "type": "string"
+              },
+              "user_id": {
+                "type": "string"
+              },
+              "primary": {
+                "type": "boolean"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "shipping_cost": {
+            "type": "number"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
           }
         }
       },
-      "NewProducts": {
-        "required": [
-          "product_name",
-          "description",
-          "price"
-        ],
+      "NewOrder-detail": {
         "properties": {
-          "product_name": {
+          "product_id": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
+          "quantity": {
+            "type": "integer"
           },
-          "stock": {
-            "type": "integer",
-            "default": 0
-          },
-          "price": {
+          "unit_price": {
             "type": "number"
           },
-          "seller": {
+          "order_id": {
             "type": "string"
+          },
+          "courier_id": {
+            "type": "string"
+          },
+          "address_id": {
+            "type": "string"
+          },
+          "shipping_cost": {
+            "type": "number"
           },
           "published_at": {
             "type": "string",
@@ -711,9 +734,5 @@
       }
     }
   },
-  "tags": [
-    {
-      "name": "Products"
-    }
-  ]
+  "tags": []
 }

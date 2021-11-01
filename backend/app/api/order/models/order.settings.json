@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "total_price": {
+      "type": "float"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "paid",
+        "waiting",
+        "sent",
+        "received",
+        "done"
+      ]
+    },
+    "order_details": {
+      "via": "order_id",
+      "collection": "order-detail"
+    }
+  }
+}

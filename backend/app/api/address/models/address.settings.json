@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "addresses",
+  "info": {
+    "name": "address",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "address": {
+      "type": "text",
+      "default": "Yogyakarta",
+      "private": false,
+      "required": true
+    },
+    "longitude": {
+      "type": "string"
+    },
+    "latitutude": {
+      "type": "string"
+    },
+    "recipient": {
+      "type": "string"
+    },
+    "user_id": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "addresses"
+    },
+    "primary": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

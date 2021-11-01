@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/products": {
+    "/trackers": {
       "get": {
         "deprecated": false,
-        "description": "Find all the products's records",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Products"
+                    "$ref": "#/components/schemas/Tracker"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Tracker"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new products record",
+        "description": "Create a new record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "$ref": "#/components/schemas/Tracker"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Tracker"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProducts"
+                "$ref": "#/components/schemas/NewTracker"
               }
             }
           }
         }
       }
     },
-    "/products/count": {
+    "/trackers/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the number of products documents",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Tracker"
         ],
         "parameters": []
       }
     },
-    "/products/{id}": {
+    "/trackers/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one products record",
+        "description": "",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "$ref": "#/components/schemas/Tracker"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Tracker"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single products record",
+        "description": "Update a record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "$ref": "#/components/schemas/Tracker"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Tracker"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProducts"
+                "$ref": "#/components/schemas/NewTracker"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single products record",
+        "description": "Delete a record",
         "responses": {
           "200": {
-            "description": "deletes a single products based on the ID supplied",
+            "description": "deletes a single record based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Tracker"
         ],
         "parameters": [
           {
@@ -514,101 +514,58 @@
   },
   "components": {
     "schemas": {
-      "Products": {
+      "Tracker": {
         "required": [
-          "id",
-          "product_name",
-          "description",
-          "price"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "product_name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "photos": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
+          "product_id": {
+            "required": [
+              "id",
+              "product_name",
+              "description",
+              "price"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "product_name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "photos": {
+                "type": "array",
+                "items": {
                   "type": "string"
                 }
+              },
+              "stock": {
+                "type": "integer"
+              },
+              "price": {
+                "type": "number"
+              },
+              "seller": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
               }
             }
           },
-          "stock": {
-            "type": "integer",
-            "default": 0
-          },
-          "price": {
-            "type": "number"
-          },
-          "seller": {
+          "user_id": {
             "required": [
               "id",
               "username",
@@ -668,33 +625,24 @@
               }
             }
           },
+          "event": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
           }
         }
       },
-      "NewProducts": {
-        "required": [
-          "product_name",
-          "description",
-          "price"
-        ],
+      "NewTracker": {
         "properties": {
-          "product_name": {
+          "product_id": {
             "type": "string"
           },
-          "description": {
+          "user_id": {
             "type": "string"
           },
-          "stock": {
-            "type": "integer",
-            "default": 0
-          },
-          "price": {
-            "type": "number"
-          },
-          "seller": {
+          "event": {
             "type": "string"
           },
           "published_at": {
@@ -713,7 +661,7 @@
   },
   "tags": [
     {
-      "name": "Products"
+      "name": "Tracker"
     }
   ]
 }

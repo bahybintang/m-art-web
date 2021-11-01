@@ -1260,6 +1260,47 @@
               "seller",
               "supplier"
             ]
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "address"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "string"
+                },
+                "latitutude": {
+                  "type": "string"
+                },
+                "recipient": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "primary": {
+                  "type": "boolean"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -1311,6 +1352,12 @@
               "seller",
               "supplier"
             ]
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"
