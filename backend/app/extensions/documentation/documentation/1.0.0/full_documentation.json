@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/01/2021 1:23:00 PM"
+    "x-generation-date": "11/01/2021 1:29:17 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5585,6 +5585,19 @@
               "courier_id": {
                 "type": "string"
               },
+              "total_price": {
+                "type": "number"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "paid",
+                  "waiting",
+                  "sent",
+                  "received",
+                  "done"
+                ]
+              },
               "published_at": {
                 "type": "string"
               },
@@ -5804,6 +5817,19 @@
               }
             }
           },
+          "total_price": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "paid",
+              "waiting",
+              "sent",
+              "received",
+              "done"
+            ]
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -5823,6 +5849,19 @@
           },
           "courier_id": {
             "type": "string"
+          },
+          "total_price": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "paid",
+              "waiting",
+              "sent",
+              "received",
+              "done"
+            ]
           },
           "published_at": {
             "type": "string",
