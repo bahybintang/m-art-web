@@ -17,6 +17,18 @@ async function getProductById(id) {
   return data;
 }
 
+async function getAllCouriers() {
+  let response = await fetchWithAuth(getUrl('/couriers'));
+  let data = await response.json();
+  return data;
+}
+
+async function getAddressesById(id) {
+  let response = await fetchWithAuth(getUrl('/addresses?user_id.id=' + id));
+  let data = await response.json();
+  return data;
+}
+
 async function addProduct(product_name, description, stock, price, photo) {
   // Upload image
   let formData = new FormData();
@@ -78,4 +90,6 @@ export {
   addProduct,
   deleteProductById,
   addClickProductTracker,
+  getAllCouriers,
+  getAddressesById,
 };
