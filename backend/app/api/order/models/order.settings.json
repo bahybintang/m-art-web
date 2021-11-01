@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "order"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "seller_id": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "address_id": {
+      "model": "address"
+    },
+    "courier_id": {
+      "model": "courier"
+    }
+  }
+}
