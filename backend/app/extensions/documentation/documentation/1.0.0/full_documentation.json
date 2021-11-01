@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/01/2021 1:29:17 PM"
+    "x-generation-date": "11/01/2021 4:11:17 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5421,6 +5421,12 @@
                   "supplier"
                 ]
               },
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -5428,6 +5434,10 @@
                 "type": "string"
               }
             }
+          },
+          "primary": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",
@@ -5455,6 +5465,10 @@
           },
           "user_id": {
             "type": "string"
+          },
+          "primary": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",
@@ -5576,15 +5590,6 @@
               "user_id": {
                 "type": "string"
               },
-              "seller_id": {
-                "type": "string"
-              },
-              "address_id": {
-                "type": "string"
-              },
-              "courier_id": {
-                "type": "string"
-              },
               "total_price": {
                 "type": "number"
               },
@@ -5598,6 +5603,12 @@
                   "done"
                 ]
               },
+              "order_details": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "published_at": {
                 "type": "string"
               },
@@ -5608,6 +5619,72 @@
                 "type": "string"
               }
             }
+          },
+          "courier_id": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "price_per_km": {
+                "type": "number"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "address_id": {
+            "required": [
+              "id",
+              "address"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "address": {
+                "type": "string"
+              },
+              "longitude": {
+                "type": "string"
+              },
+              "latitutude": {
+                "type": "string"
+              },
+              "recipient": {
+                "type": "string"
+              },
+              "user_id": {
+                "type": "string"
+              },
+              "primary": {
+                "type": "boolean"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
+          "shipping_cost": {
+            "type": "number"
           },
           "published_at": {
             "type": "string",
@@ -5628,6 +5705,15 @@
           },
           "order_id": {
             "type": "string"
+          },
+          "courier_id": {
+            "type": "string"
+          },
+          "address_id": {
+            "type": "string"
+          },
+          "shipping_cost": {
+            "type": "number"
           },
           "published_at": {
             "type": "string",
@@ -5695,119 +5781,11 @@
                   "supplier"
                 ]
               },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "seller_id": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "eCommerceRole"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "eCommerceRole": {
-                "type": "string",
-                "enum": [
-                  "customer",
-                  "seller",
-                  "supplier"
-                ]
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "address_id": {
-            "required": [
-              "id",
-              "address"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "address": {
-                "type": "string"
-              },
-              "longitude": {
-                "type": "string"
-              },
-              "latitutude": {
-                "type": "string"
-              },
-              "recipient": {
-                "type": "string"
-              },
-              "user_id": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "courier_id": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "price_per_km": {
-                "type": "number"
-              },
-              "published_at": {
-                "type": "string"
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -5829,6 +5807,49 @@
               "received",
               "done"
             ]
+          },
+          "order_details": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "product_id": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "unit_price": {
+                  "type": "number"
+                },
+                "order_id": {
+                  "type": "string"
+                },
+                "courier_id": {
+                  "type": "string"
+                },
+                "address_id": {
+                  "type": "string"
+                },
+                "shipping_cost": {
+                  "type": "number"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           },
           "published_at": {
             "type": "string",
@@ -5841,15 +5862,6 @@
           "user_id": {
             "type": "string"
           },
-          "seller_id": {
-            "type": "string"
-          },
-          "address_id": {
-            "type": "string"
-          },
-          "courier_id": {
-            "type": "string"
-          },
           "total_price": {
             "type": "number"
           },
@@ -5862,6 +5874,12 @@
               "received",
               "done"
             ]
+          },
+          "order_details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",
@@ -6015,6 +6033,12 @@
                   "supplier"
                 ]
               },
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -6160,6 +6184,12 @@
                   "seller",
                   "supplier"
                 ]
+              },
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -6309,6 +6339,12 @@
                     "supplier"
                   ]
                 },
+                "addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -6431,6 +6467,47 @@
               "seller",
               "supplier"
             ]
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "address"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "string"
+                },
+                "latitutude": {
+                  "type": "string"
+                },
+                "recipient": {
+                  "type": "string"
+                },
+                "user_id": {
+                  "type": "string"
+                },
+                "primary": {
+                  "type": "boolean"
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -6482,6 +6559,12 @@
               "seller",
               "supplier"
             ]
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

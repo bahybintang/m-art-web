@@ -16,16 +16,6 @@
       "plugin": "users-permissions",
       "model": "user"
     },
-    "seller_id": {
-      "plugin": "users-permissions",
-      "model": "user"
-    },
-    "address_id": {
-      "model": "address"
-    },
-    "courier_id": {
-      "model": "courier"
-    },
     "total_price": {
       "type": "float"
     },
@@ -38,6 +28,10 @@
         "received",
         "done"
       ]
+    },
+    "order_details": {
+      "via": "order_id",
+      "collection": "order-detail"
     }
   }
 }

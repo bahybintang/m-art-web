@@ -582,6 +582,12 @@
                   "supplier"
                 ]
               },
+              "addresses": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -589,6 +595,10 @@
                 "type": "string"
               }
             }
+          },
+          "primary": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",
@@ -616,6 +626,10 @@
           },
           "user_id": {
             "type": "string"
+          },
+          "primary": {
+            "type": "boolean",
+            "default": false
           },
           "published_at": {
             "type": "string",

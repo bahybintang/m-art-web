@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "order_details",
   "info": {
-    "name": "order_detail"
+    "name": "order_detail",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -21,7 +22,17 @@
       "type": "float"
     },
     "order_id": {
-      "model": "order"
+      "model": "order",
+      "via": "order_details"
+    },
+    "courier_id": {
+      "model": "courier"
+    },
+    "address_id": {
+      "model": "address"
+    },
+    "shipping_cost": {
+      "type": "float"
     }
   }
 }
