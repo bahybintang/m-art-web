@@ -530,7 +530,7 @@
           "longitude": {
             "type": "string"
           },
-          "latitutude": {
+          "latitude": {
             "type": "string"
           },
           "recipient": {
@@ -588,6 +588,12 @@
                   "type": "string"
                 }
               },
+              "orders": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -618,7 +624,7 @@
           "longitude": {
             "type": "string"
           },
-          "latitutude": {
+          "latitude": {
             "type": "string"
           },
           "recipient": {

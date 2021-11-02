@@ -614,29 +614,16 @@
                   "type": "string"
                 }
               },
-              "published_at": {
+              "seller_id": {
                 "type": "string"
               },
-              "created_by": {
+              "address_id": {
                 "type": "string"
               },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "courier_id": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
+              "courier_id": {
                 "type": "string"
               },
-              "name": {
-                "type": "string"
-              },
-              "price_per_km": {
+              "shipping_cost": {
                 "type": "number"
               },
               "published_at": {
@@ -649,47 +636,6 @@
                 "type": "string"
               }
             }
-          },
-          "address_id": {
-            "required": [
-              "id",
-              "address"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "address": {
-                "type": "string"
-              },
-              "longitude": {
-                "type": "string"
-              },
-              "latitutude": {
-                "type": "string"
-              },
-              "recipient": {
-                "type": "string"
-              },
-              "user_id": {
-                "type": "string"
-              },
-              "primary": {
-                "type": "boolean"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "shipping_cost": {
-            "type": "number"
           },
           "published_at": {
             "type": "string",
@@ -710,15 +656,6 @@
           },
           "order_id": {
             "type": "string"
-          },
-          "courier_id": {
-            "type": "string"
-          },
-          "address_id": {
-            "type": "string"
-          },
-          "shipping_cost": {
-            "type": "number"
           },
           "published_at": {
             "type": "string",

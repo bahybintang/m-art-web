@@ -178,7 +178,7 @@ function Checkout() {
                   ))}
                 </Stack>
                 <Stack>
-                  <Text>
+                  <Text align="right">
                     Penjual: {key in sellers ? sellers[key].username : ''}
                   </Text>
                   <Select
@@ -191,7 +191,7 @@ function Checkout() {
                       <option value={e.id}>{e.name}</option>
                     ))}
                   </Select>
-                  <Text>
+                  <Text align="right">
                     Estimated Price: Rp
                     {key in courierPrice ? courierPrice[key] : ''}
                   </Text>

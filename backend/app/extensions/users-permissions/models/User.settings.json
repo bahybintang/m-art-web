@@ -72,6 +72,10 @@
     "addresses": {
       "via": "user_id",
       "collection": "address"
+    },
+    "orders": {
+      "via": "seller_id",
+      "collection": "order"
     }
   }
 }
