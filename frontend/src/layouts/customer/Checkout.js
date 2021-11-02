@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCart } from '../../helpers/AddToCart';
+import { getCart, emptyCart } from '../../helpers/AddToCart';
 import {
   Heading,
   Avatar,
@@ -15,9 +15,10 @@ import {
   SimpleGrid,
   useColorModeValue,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react';
 import Config from '../../config';
-import { getAllCouriers, getAddressesById } from '../../helpers/Api';
+import { getAllCouriers, getAddressesById, addOrder } from '../../helpers/Api';
 import { getUserData } from '../../helpers/Auth';
 import AddAddress from './AddAdrress';
 // import _ from 'lodash';
@@ -34,6 +35,7 @@ function Checkout() {
   const [rawCart, setRawCart] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const curColorMode = useColorModeValue('white', 'gray.900');
+  const toast = useToast();
 
   useEffect(() => {
     (async function () {
@@ -45,12 +47,12 @@ function Checkout() {
       for (let c of cartRaw) {
         if (!(c.seller.id in tmpCart)) {
           tmpCart[c.seller.id] = [c];
-        } else {
-          tmpCart[c.seller.id] = [...tmpCart[c.seller.id], c];
-          tmpSeller[c.seller.id] = c.seller;
           tmpSellerAddresses[c.seller.id] = (
             await getAddressesById(c.seller.id)
           ).find(e => e.primary === true);
+          tmpSeller[c.seller.id] = c.seller;
+        } else {
+          tmpCart[c.seller.id] = [...tmpCart[c.seller.id], c];
         }
       }
 
@@ -88,6 +90,50 @@ function Checkout() {
       setSelectedCourier({ ...selectedCourier, [seller_id]: courier_id });
       setCourierPrice({ ...courierPrice, [seller_id]: price });
     } catch {}
+  }
+
+  async function doPaySeller(seller_id) {
+    const shipping_cost = parseFloat(courierPrice[seller_id]);
+    const total_price =
+      shipping_cost +
+      cart[seller_id].reduce((prev, cur) => prev + cur.price * cur.qty, 0);
+    const status = 'paid';
+    const courier_id = couriers.find(
+      e => e.id == selectedCourier[seller_id]
+    ).id;
+    const order_details = cart[seller_id].map(e => ({
+      product_id: e.id,
+      quantity: e.qty,
+      unit_price: e.price,
+    }));
+    const address_id = selectedAddress;
+
+    await addOrder(
+      total_price,
+      shipping_cost,
+      status,
+      seller_id,
+      address_id,
+      courier_id,
+      order_details
+    );
+  }
+
+  async function doPay() {
+    toast({
+      title: 'Ordering',
+      duration: 2000,
+      isClosable: true,
+    });
+    for (let seller in sellers) {
+      await doPaySeller(seller);
+    }
+    toast({
+      title: 'Order Success',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    });
   }
 
   function calcCrow(lat1, lon1, lat2, lon2) {
@@ -256,7 +302,9 @@ function Checkout() {
                   )}
               </Text>
             </SimpleGrid>
-            <Button colorScheme="green">Pay</Button>
+            <Button onClick={doPay} colorScheme="green">
+              Order & Pay
+            </Button>
           </Stack>
         </Box>
       </Stack>

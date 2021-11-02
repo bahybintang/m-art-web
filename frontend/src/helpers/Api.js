@@ -46,6 +46,33 @@ async function addAddress(recipient, address, latitude, longitude, is_primary) {
   return data;
 }
 
+async function addOrder(
+  total_price,
+  shipping_cost,
+  status,
+  seller_id,
+  address_id,
+  courier_id,
+  order_details
+) {
+  const { id } = getUserData();
+  const response = await fetchWithAuth(getUrl('/orders'), {
+    method: 'POST',
+    body: JSON.stringify({
+      user_id: id,
+      total_price,
+      shipping_cost,
+      status,
+      seller_id,
+      address_id,
+      courier_id,
+      order_details,
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
+
 async function addProduct(product_name, description, stock, price, photo) {
   // Upload image
   let formData = new FormData();
@@ -110,4 +137,5 @@ export {
   getAllCouriers,
   getAddressesById,
   addAddress,
+  addOrder,
 };
