@@ -21,7 +21,7 @@
     "longitude": {
       "type": "string"
     },
-    "latitutude": {
+    "latitude": {
       "type": "string"
     },
     "recipient": {

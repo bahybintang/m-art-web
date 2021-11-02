@@ -1,12 +1,11 @@
 'use strict';
 const { isDraft } = require('strapi-utils').contentTypes;
-
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
  * to customize this service
  */
 
-module.exports = {
+ module.exports = {
     /**
      * Promise to add record
      *

@@ -22,17 +22,8 @@
       "type": "float"
     },
     "order_id": {
-      "model": "order",
-      "via": "order_details"
-    },
-    "courier_id": {
-      "model": "courier"
-    },
-    "address_id": {
-      "model": "address"
-    },
-    "shipping_cost": {
-      "type": "float"
+      "via": "order_details",
+      "model": "order"
     }
   }
 }

@@ -32,6 +32,20 @@
     "order_details": {
       "via": "order_id",
       "collection": "order-detail"
+    },
+    "seller_id": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "orders"
+    },
+    "address_id": {
+      "model": "address"
+    },
+    "courier_id": {
+      "model": "courier"
+    },
+    "shipping_cost": {
+      "type": "float"
     }
   }
 }
