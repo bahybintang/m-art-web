@@ -12,11 +12,14 @@ import {
   Badge,
   Image,
   Select,
+  SimpleGrid,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import Config from '../../config';
 import { getAllCouriers, getAddressesById } from '../../helpers/Api';
 import { getUserData } from '../../helpers/Auth';
+import AddAddress from './AddAdrress';
 // import _ from 'lodash';
 
 function Checkout() {
@@ -29,7 +32,7 @@ function Checkout() {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [cart, setCart] = useState({});
   const [rawCart, setRawCart] = useState([]);
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const curColorMode = useColorModeValue('white', 'gray.900');
 
   useEffect(() => {
@@ -63,6 +66,11 @@ function Checkout() {
       setAddresses(addresses);
     })();
   }, []);
+
+  async function fetchAddresses() {
+    const addresses = await getAddressesById(getUserData().id);
+    setAddresses(addresses);
+  }
 
   function setCourierByIdSeller(seller_id, courier_id) {
     try {
@@ -109,6 +117,12 @@ function Checkout() {
 
   return (
     <Center py={6}>
+      <AddAddress
+        onClose={onClose}
+        onOpen={onOpen}
+        isOpen={isOpen}
+        toggleRefetch={fetchAddresses}
+      />
       <Stack>
         <Box
           maxW={'720px'}
@@ -119,18 +133,23 @@ function Checkout() {
           p={6}
           textAlign={'center'}
         >
-          <Select
-            placeholder="Select address"
-            onChange={e => {
-              setSelectedAddress(e.target.value);
-            }}
-          >
-            {addresses.map(e => (
-              <option value={e.id}>
-                {e.recipient} - {e.address}
-              </option>
-            ))}
-          </Select>
+          <Stack>
+            <Select
+              placeholder="Select address"
+              onChange={e => {
+                setSelectedAddress(e.target.value);
+              }}
+            >
+              {addresses.map(e => (
+                <option value={e.id}>
+                  {e.recipient} - {e.address}
+                </option>
+              ))}
+            </Select>
+            <Button colorScheme="green" onClick={onOpen}>
+              Add Address
+            </Button>
+          </Stack>
         </Box>
         <Box
           maxW={'720px'}
@@ -213,25 +232,30 @@ function Checkout() {
             <Heading align="left" size="sm">
               Order Summary
             </Heading>
-            <Text align="left">
-              Product Price: Rp
-              {rawCart.reduce((prev, cur) => prev + cur.price * cur.qty, 0)}
-            </Text>
-            <Text align="left">
-              Shipping Price: Rp
-              {Object.values(courierPrice).reduce(
-                (prev, cur) => parseFloat(prev) + parseFloat(cur),
-                0
-              )}
-            </Text>
-            <Text align="left">
-              Total Price: Rp
-              {rawCart.reduce((prev, cur) => prev + cur.price * cur.qty, 0) +
-                Object.values(courierPrice).reduce(
+            <SimpleGrid columns={2}>
+              <Text align="left">Product Price</Text>
+              <Text align="right">
+                Rp
+                {rawCart.reduce((prev, cur) => prev + cur.price * cur.qty, 0)}
+              </Text>
+              <Text align="left">Shipping Price</Text>
+              <Text align="right">
+                Rp
+                {Object.values(courierPrice).reduce(
                   (prev, cur) => parseFloat(prev) + parseFloat(cur),
                   0
                 )}
-            </Text>
+              </Text>
+              <Text align="left">Total Price</Text>
+              <Text align="right">
+                Rp
+                {rawCart.reduce((prev, cur) => prev + cur.price * cur.qty, 0) +
+                  Object.values(courierPrice).reduce(
+                    (prev, cur) => parseFloat(prev) + parseFloat(cur),
+                    0
+                  )}
+              </Text>
+            </SimpleGrid>
             <Button colorScheme="green">Pay</Button>
           </Stack>
         </Box>

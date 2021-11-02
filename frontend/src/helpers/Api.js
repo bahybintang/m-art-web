@@ -29,6 +29,23 @@ async function getAddressesById(id) {
   return data;
 }
 
+async function addAddress(recipient, address, latitude, longitude, is_primary) {
+  const { id } = getUserData();
+  const response = await fetchWithAuth(getUrl('/addresses'), {
+    method: 'POST',
+    body: JSON.stringify({
+      user_id: id,
+      recipient,
+      address,
+      latitude,
+      longitude,
+      is_primary,
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
+
 async function addProduct(product_name, description, stock, price, photo) {
   // Upload image
   let formData = new FormData();
@@ -92,4 +109,5 @@ export {
   addClickProductTracker,
   getAllCouriers,
   getAddressesById,
+  addAddress,
 };
