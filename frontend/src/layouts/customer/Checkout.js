@@ -134,6 +134,7 @@ function Checkout() {
       duration: 2000,
       isClosable: true,
     });
+    emptyCart();
   }
 
   function calcCrow(lat1, lon1, lat2, lon2) {
