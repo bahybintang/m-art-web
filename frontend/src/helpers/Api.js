@@ -29,7 +29,7 @@ async function getAddressesById(id) {
   return data;
 }
 
-async function addAddress(recipient, address, latitude, longitude, is_primary) {
+async function addAddress(recipient, address, latitude, longitude, primary) {
   const { id } = getUserData();
   const response = await fetchWithAuth(getUrl('/addresses'), {
     method: 'POST',
@@ -39,7 +39,7 @@ async function addAddress(recipient, address, latitude, longitude, is_primary) {
       address,
       latitude,
       longitude,
-      is_primary,
+      primary,
     }),
   });
   const data = await response.json();

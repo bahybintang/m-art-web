@@ -189,6 +189,7 @@ function Checkout() {
             >
               {addresses.map(e => (
                 <option value={e.id}>
+                  {e.primary ? `[Primary] - ` : ''}
                   {e.recipient} - {e.address}
                 </option>
               ))}
