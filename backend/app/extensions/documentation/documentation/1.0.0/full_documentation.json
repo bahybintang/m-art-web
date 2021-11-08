@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/08/2021 1:40:18 PM"
+    "x-generation-date": "11/08/2021 2:05:54 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -2102,7 +2102,7 @@
         ]
       }
     },
-    "/paymen-lists": {
+    "/payment-lists": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -2154,7 +2154,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": [
           {
@@ -2346,7 +2346,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "requestBody": {
           "description": "",
@@ -2354,14 +2354,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPaymen-list"
+                "$ref": "#/components/schemas/NewPayment-list"
               }
             }
           }
         }
       }
     },
-    "/paymen-lists/count": {
+    "/payment-lists/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -2413,12 +2413,12 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": []
       }
     },
-    "/paymen-lists/{id}": {
+    "/payment-lists/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -2470,7 +2470,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": [
           {
@@ -2536,7 +2536,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "requestBody": {
           "description": "",
@@ -2544,7 +2544,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPaymen-list"
+                "$ref": "#/components/schemas/NewPayment-list"
               }
             }
           }
@@ -2610,7 +2610,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": [
           {
@@ -6969,10 +6969,10 @@
               "id": {
                 "type": "string"
               },
-              "paymen_method": {
+              "payment_code": {
                 "type": "string"
               },
-              "payment_code": {
+              "payment_method": {
                 "type": "string"
               },
               "published_at": {
@@ -7043,7 +7043,7 @@
           }
         }
       },
-      "Paymen-list": {
+      "Payment-list": {
         "required": [
           "id"
         ],
@@ -7051,14 +7051,14 @@
           "id": {
             "type": "string"
           },
-          "Name": {
+          "name": {
             "type": "string"
           },
           "type": {
             "type": "string",
             "enum": [
-              "cod",
               "manual",
+              "cod",
               "ewallet"
             ]
           },
@@ -7068,16 +7068,16 @@
           }
         }
       },
-      "NewPaymen-list": {
+      "NewPayment-list": {
         "properties": {
-          "Name": {
+          "name": {
             "type": "string"
           },
           "type": {
             "type": "string",
             "enum": [
-              "cod",
               "manual",
+              "cod",
               "ewallet"
             ]
           },
@@ -7101,7 +7101,10 @@
           "id": {
             "type": "string"
           },
-          "paymen_method": {
+          "payment_code": {
+            "type": "string"
+          },
+          "payment_method": {
             "required": [
               "id"
             ],
@@ -7109,14 +7112,14 @@
               "id": {
                 "type": "string"
               },
-              "Name": {
+              "name": {
                 "type": "string"
               },
               "type": {
                 "type": "string",
                 "enum": [
-                  "cod",
                   "manual",
+                  "cod",
                   "ewallet"
                 ]
               },
@@ -7131,9 +7134,6 @@
               }
             }
           },
-          "payment_code": {
-            "type": "string"
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7142,10 +7142,10 @@
       },
       "NewPayment": {
         "properties": {
-          "paymen_method": {
+          "payment_code": {
             "type": "string"
           },
-          "payment_code": {
+          "payment_method": {
             "type": "string"
           },
           "published_at": {

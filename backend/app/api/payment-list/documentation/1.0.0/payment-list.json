@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/paymen-lists": {
+    "/payment-lists": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -52,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": [
           {
@@ -244,7 +244,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +252,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPaymen-list"
+                "$ref": "#/components/schemas/NewPayment-list"
               }
             }
           }
         }
       }
     },
-    "/paymen-lists/count": {
+    "/payment-lists/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -311,12 +311,12 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": []
       }
     },
-    "/paymen-lists/{id}": {
+    "/payment-lists/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -368,7 +368,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": [
           {
@@ -434,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "requestBody": {
           "description": "",
@@ -442,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPaymen-list"
+                "$ref": "#/components/schemas/NewPayment-list"
               }
             }
           }
@@ -508,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Paymen-list"
+          "Payment-list"
         ],
         "parameters": [
           {
@@ -527,7 +527,7 @@
   },
   "components": {
     "schemas": {
-      "Paymen-list": {
+      "Payment-list": {
         "required": [
           "id"
         ],
@@ -535,14 +535,14 @@
           "id": {
             "type": "string"
           },
-          "Name": {
+          "name": {
             "type": "string"
           },
           "type": {
             "type": "string",
             "enum": [
-              "cod",
               "manual",
+              "cod",
               "ewallet"
             ]
           },
@@ -552,16 +552,16 @@
           }
         }
       },
-      "NewPaymen-list": {
+      "NewPayment-list": {
         "properties": {
-          "Name": {
+          "name": {
             "type": "string"
           },
           "type": {
             "type": "string",
             "enum": [
-              "cod",
               "manual",
+              "cod",
               "ewallet"
             ]
           },

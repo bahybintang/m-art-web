@@ -775,10 +775,10 @@
               "id": {
                 "type": "string"
               },
-              "paymen_method": {
+              "payment_code": {
                 "type": "string"
               },
-              "payment_code": {
+              "payment_method": {
                 "type": "string"
               },
               "published_at": {

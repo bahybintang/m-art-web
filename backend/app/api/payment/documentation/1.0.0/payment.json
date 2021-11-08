@@ -522,7 +522,10 @@
           "id": {
             "type": "string"
           },
-          "paymen_method": {
+          "payment_code": {
+            "type": "string"
+          },
+          "payment_method": {
             "required": [
               "id"
             ],
@@ -530,14 +533,14 @@
               "id": {
                 "type": "string"
               },
-              "Name": {
+              "name": {
                 "type": "string"
               },
               "type": {
                 "type": "string",
                 "enum": [
-                  "cod",
                   "manual",
+                  "cod",
                   "ewallet"
                 ]
               },
@@ -552,9 +555,6 @@
               }
             }
           },
-          "payment_code": {
-            "type": "string"
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -563,10 +563,10 @@
       },
       "NewPayment": {
         "properties": {
-          "paymen_method": {
+          "payment_code": {
             "type": "string"
           },
-          "payment_code": {
+          "payment_method": {
             "type": "string"
           },
           "published_at": {

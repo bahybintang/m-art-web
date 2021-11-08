@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/paymen-lists",
-      "handler": "paymen-list.find",
+      "path": "/payment-lists",
+      "handler": "payment-list.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/paymen-lists/count",
-      "handler": "paymen-list.count",
+      "path": "/payment-lists/count",
+      "handler": "payment-list.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/paymen-lists/:id",
-      "handler": "paymen-list.findOne",
+      "path": "/payment-lists/:id",
+      "handler": "payment-list.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/paymen-lists",
-      "handler": "paymen-list.create",
+      "path": "/payment-lists",
+      "handler": "payment-list.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/paymen-lists/:id",
-      "handler": "paymen-list.update",
+      "path": "/payment-lists/:id",
+      "handler": "payment-list.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/paymen-lists/:id",
-      "handler": "paymen-list.delete",
+      "path": "/payment-lists/:id",
+      "handler": "payment-list.delete",
       "config": {
         "policies": []
       }
