@@ -92,8 +92,13 @@ function Checkout() {
         ) * courier.price_per_km
       ).toFixed(0);
       setSelectedCourier({ ...selectedCourier, [seller_id]: courier_id });
-      setCourierPrice({ ...courierPrice, [seller_id]: price });
+      setCourierPrice({ ...courierPrice, [seller_id]: toNearest500(price) });
     } catch {}
+  }
+
+  function toNearest500(num) {
+    let div = Math.ceil(num / 500);
+    return div * 500;
   }
 
   async function doOrder(seller_id) {
