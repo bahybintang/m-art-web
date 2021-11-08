@@ -46,6 +46,9 @@
     },
     "shipping_cost": {
       "type": "float"
+    },
+    "payment": {
+      "model": "payment"
     }
   }
 }

@@ -626,6 +626,9 @@
               "shipping_cost": {
                 "type": "number"
               },
+              "payment": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/paymen-lists",
+      "handler": "paymen-list.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/paymen-lists/count",
+      "handler": "paymen-list.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/paymen-lists/:id",
+      "handler": "paymen-list.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/paymen-lists",
+      "handler": "paymen-list.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/paymen-lists/:id",
+      "handler": "paymen-list.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/paymen-lists/:id",
+      "handler": "paymen-list.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/orders": {
+    "/payments": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -12,7 +12,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Order"
+                    "$ref": "#/components/schemas/Payment"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Payment"
         ],
         "parameters": [
           {
@@ -201,7 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Payment"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Payment"
         ],
         "requestBody": {
           "description": "",
@@ -247,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewPayment"
               }
             }
           }
         }
       }
     },
-    "/orders/count": {
+    "/payments/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -306,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Payment"
         ],
         "parameters": []
       }
     },
-    "/orders/{id}": {
+    "/payments/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Payment"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Payment"
         ],
         "parameters": [
           {
@@ -383,7 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Order"
+                  "$ref": "#/components/schemas/Payment"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Payment"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewOrder"
+                "$ref": "#/components/schemas/NewPayment"
               }
             }
           }
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Order"
+          "Payment"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Order": {
+      "Payment": {
         "required": [
           "id"
         ],
@@ -522,224 +522,7 @@
           "id": {
             "type": "string"
           },
-          "user_id": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "eCommerceRole"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "eCommerceRole": {
-                "type": "string",
-                "enum": [
-                  "customer",
-                  "seller",
-                  "supplier"
-                ]
-              },
-              "addresses": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "orders": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "total_price": {
-            "type": "number"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "paid",
-              "waiting",
-              "sent",
-              "received",
-              "done"
-            ]
-          },
-          "order_details": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "product_id": {
-                  "type": "string"
-                },
-                "quantity": {
-                  "type": "integer"
-                },
-                "unit_price": {
-                  "type": "number"
-                },
-                "order_id": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "seller_id": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "eCommerceRole"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "eCommerceRole": {
-                "type": "string",
-                "enum": [
-                  "customer",
-                  "seller",
-                  "supplier"
-                ]
-              },
-              "addresses": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "orders": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "address_id": {
-            "required": [
-              "id",
-              "address"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "address": {
-                "type": "string"
-              },
-              "longitude": {
-                "type": "string"
-              },
-              "latitude": {
-                "type": "string"
-              },
-              "recipient": {
-                "type": "string"
-              },
-              "user_id": {
-                "type": "string"
-              },
-              "primary": {
-                "type": "boolean"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "courier_id": {
+          "paymen_method": {
             "required": [
               "id"
             ],
@@ -747,11 +530,16 @@
               "id": {
                 "type": "string"
               },
-              "name": {
+              "Name": {
                 "type": "string"
               },
-              "price_per_km": {
-                "type": "number"
+              "type": {
+                "type": "string",
+                "enum": [
+                  "cod",
+                  "manual",
+                  "ewallet"
+                ]
               },
               "published_at": {
                 "type": "string"
@@ -764,33 +552,8 @@
               }
             }
           },
-          "shipping_cost": {
-            "type": "number"
-          },
-          "payment": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "paymen_method": {
-                "type": "string"
-              },
-              "payment_code": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
+          "payment_code": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -798,43 +561,12 @@
           }
         }
       },
-      "NewOrder": {
+      "NewPayment": {
         "properties": {
-          "user_id": {
+          "paymen_method": {
             "type": "string"
           },
-          "total_price": {
-            "type": "number"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "paid",
-              "waiting",
-              "sent",
-              "received",
-              "done"
-            ]
-          },
-          "order_details": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "seller_id": {
-            "type": "string"
-          },
-          "address_id": {
-            "type": "string"
-          },
-          "courier_id": {
-            "type": "string"
-          },
-          "shipping_cost": {
-            "type": "number"
-          },
-          "payment": {
+          "payment_code": {
             "type": "string"
           },
           "published_at": {
@@ -853,7 +585,7 @@
   },
   "tags": [
     {
-      "name": "Order"
+      "name": "Payment"
     }
   ]
 }

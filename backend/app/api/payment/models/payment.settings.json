@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "name": "Payment"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "paymen_method": {
+      "model": "paymen-list"
+    },
+    "payment_code": {
+      "type": "string"
+    }
+  }
+}
