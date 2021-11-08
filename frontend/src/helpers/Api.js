@@ -29,6 +29,12 @@ async function getAddressesById(id) {
   return data;
 }
 
+async function getPaymentLists() {
+  let response = await fetchWithAuth(getUrl('/payment-lists'));
+  let data = await response.json();
+  return data;
+}
+
 async function addAddress(recipient, address, latitude, longitude, primary) {
   const { id } = getUserData();
   const response = await fetchWithAuth(getUrl('/addresses'), {
@@ -67,6 +73,19 @@ async function addOrder(
       address_id,
       courier_id,
       order_details,
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
+
+async function addPayments(payment_code, payment_method, orders) {
+  const response = await fetchWithAuth(getUrl('/payments'), {
+    method: 'POST',
+    body: JSON.stringify({
+      payment_code,
+      payment_method,
+      orders,
     }),
   });
   const data = await response.json();
@@ -138,4 +157,6 @@ export {
   getAddressesById,
   addAddress,
   addOrder,
+  getPaymentLists,
+  addPayments,
 };

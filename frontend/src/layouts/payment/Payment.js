@@ -6,6 +6,7 @@ import {
   Stack,
   useRadioGroup,
   Button,
+  useToast,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -13,9 +14,11 @@ import { Card } from './Card';
 import { Logo } from './Logo';
 import RadioCard from './RadioCard';
 import { getCurrentOrder, clearCurrentOrder } from '../../helpers/AddOrders';
+import { getPaymentLists, addPayments } from '../../helpers/Api';
 
 function Payment() {
   const history = useHistory();
+  const toast = useToast();
 
   const [payToken, setPayToken] = useState('');
   const [optionsMap, setOptionsMap] = useState({});
@@ -29,32 +32,42 @@ function Payment() {
 
   const group = getRootProps();
 
-  useEffect(() => {
+  useEffect(async () => {
     const randInt = Math.floor(Math.random() * 1000000);
     const token = 'PAY-' + `${randInt}`.padStart(7, '0');
     setPayToken(token);
 
-    const data = [
-      { id: 1, name: 'OVO' },
-      { id: 2, name: 'Transfer Bank' },
-      { id: 3, name: 'Cash on Delivery' },
-    ];
-    const optsMap = {};
-    const opts = [];
-    for (let d of data) {
-      opts.push(d.name);
-      optsMap[d.name] = d.id;
-    }
-    setOptions(opts);
-    setOptionsMap(optsMap);
+    (async function () {
+      const data = await getPaymentLists();
+      const optsMap = {};
+      const opts = [];
+      for (let d of data) {
+        opts.push(d.name);
+        optsMap[d.name] = d.id;
+      }
+      setOptions(opts);
+      setOptionsMap(optsMap);
+    })();
   }, []);
 
-  function doPay() {
-    const payment_id = optionsMap[paymentType];
-    const order_id = getCurrentOrder();
-    const paymentToken = payToken;
+  async function doPay() {
+    const payment_method = optionsMap[paymentType];
+    const orders = getCurrentOrder();
+    const payment_code = payToken;
 
-    console.log(payment_id, order_id, paymentToken);
+    toast({
+      title: 'Paying',
+      duration: 2000,
+      isClosable: true,
+    });
+    await addPayments(payment_code, payment_method, orders);
+    toast({
+      title: 'Payment Success',
+      status: 'success',
+      duration: 2000,
+      isClosable: true,
+    });
+
     clearCurrentOrder();
     history.push('/customer/orders');
   }
