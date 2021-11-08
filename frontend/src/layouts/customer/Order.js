@@ -3,25 +3,27 @@ import OrderTable from './OrderTable';
 import { getCart } from '../../helpers/AddToCart.js';
 import Config from '../../config';
 import { getUserData } from '../../helpers/Auth';
+import { getOrdersByCurrentCustomer } from '../../helpers/Api';
 
 function Order() {
   const [items, setItems] = useState([]);
   const [refetch, setRefetch] = useState(true);
-  useEffect(() => {
-    const data = getCart();
-    console.log(data);
-    setItems(
-      data.map(e => ({
-        id: e.id,
-        name: e.product_name,
-        price: e.price,
-        seller: e.seller.username,
-        description: e.description,
-        stock: e.stock,
-        image: Config.API_URL + e.photos[0].formats.thumbnail.url,
-        qty: e.qty,
-      }))
-    );
+  useEffect(async () => {
+    (async function () {
+      const data = await getOrdersByCurrentCustomer();
+      setItems(
+        data.map(e => ({
+          id: e.id,
+          payment_code: e.payment.payment_code,
+          seller: e.seller_id.username,
+          courier: e.courier_id.name,
+          item_count: e.order_details.length,
+          shipping_cost: e.shipping_cost,
+          total_price: e.total_price,
+          status: e.status,
+        }))
+      );
+    })();
   }, [refetch]);
 
   function toggleRefetch() {

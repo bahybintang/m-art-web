@@ -79,6 +79,19 @@ async function addOrder(
   return data;
 }
 
+async function getOrdersByCurrentCustomer() {
+  const { id } = getUserData();
+  const response = await fetchWithAuth(getUrl('/orders?user_id.id=' + id));
+  const data = await response.json();
+  return data;
+}
+
+async function getOrderDetailsById(id) {
+  const response = await fetchWithAuth(getUrl('/order-details?order_id.id=' + id));
+  const data = await response.json();
+  return data;
+}
+
 async function addPayments(payment_code, payment_method, orders) {
   const response = await fetchWithAuth(getUrl('/payments'), {
     method: 'POST',
@@ -159,4 +172,6 @@ export {
   addOrder,
   getPaymentLists,
   addPayments,
+  getOrdersByCurrentCustomer,
+  getOrderDetailsById,
 };
