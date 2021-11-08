@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_lists",
+  "info": {
+    "name": "payment_list"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "manual",
+        "cod",
+        "ewallet"
+      ]
+    }
+  }
+}

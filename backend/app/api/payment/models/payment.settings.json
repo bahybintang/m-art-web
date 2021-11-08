@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "name": "Payment",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "payment_code": {
+      "type": "string"
+    },
+    "payment_method": {
+      "model": "payment-list"
+    }
+  }
+}
