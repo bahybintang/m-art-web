@@ -14,7 +14,7 @@ function Order() {
       setItems(
         data.map(e => ({
           id: e.id,
-          payment_code: e.payment.payment_code,
+          payment_code: e.payment ? e.payment.payment_code : '-',
           seller: e.seller_id.username,
           courier: e.courier_id.name,
           item_count: e.order_details.length,
