@@ -6,6 +6,7 @@ import Profile from './Profile';
 import ProductDetail from './ProductDetail';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import Order from './Order';
 
 function Customer(props) {
   return (
@@ -13,6 +14,7 @@ function Customer(props) {
       <Switch>
         <Route path="/customer/checkout" component={Checkout} />
         <Route path="/customer/cart" component={Cart} />
+        <Route path="/customer/order" component={Order} />
         <Route path="/customer/products/:id" component={ProductDetail} />
         <Route path="/customer/profile" component={Profile} />
         <Route path="/customer" component={Home} />

@@ -47,6 +47,7 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, link: '/customer' },
   { name: 'Cart', icon: TiShoppingCart, link: '/customer/cart' },
+  { name: 'Order', icon: TiShoppingCart, link: '/customer/order' },
   { name: 'Profile', icon: FiCompass, link: '/customer/profile' },
   // { name: 'Settings', icon: FiSettings, link: '#' },
 ];
