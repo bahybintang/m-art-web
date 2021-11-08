@@ -17,13 +17,17 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import Config from '../../config';
 import { getAllCouriers, getAddressesById, addOrder } from '../../helpers/Api';
 import { getUserData } from '../../helpers/Auth';
+import { saveCurrentOrder } from '../../helpers/AddOrders';
 import AddAddress from './AddAdrress';
 // import _ from 'lodash';
 
 function Checkout() {
+  const history = useHistory();
+
   const [couriers, setCouriers] = useState([]);
   const [addresses, setAddresses] = useState([]);
   const [sellers, setSellers] = useState({});
@@ -92,12 +96,12 @@ function Checkout() {
     } catch {}
   }
 
-  async function doPaySeller(seller_id) {
+  async function doOrder(seller_id) {
     const shipping_cost = parseFloat(courierPrice[seller_id]);
     const total_price =
       shipping_cost +
       cart[seller_id].reduce((prev, cur) => prev + cur.price * cur.qty, 0);
-    const status = 'paid';
+    const status = 'waiting';
     const courier_id = couriers.find(
       e => e.id == selectedCourier[seller_id]
     ).id;
@@ -108,7 +112,7 @@ function Checkout() {
     }));
     const address_id = selectedAddress;
 
-    await addOrder(
+    return await addOrder(
       total_price,
       shipping_cost,
       status,
@@ -119,14 +123,15 @@ function Checkout() {
     );
   }
 
-  async function doPay() {
+  async function doOrders() {
     toast({
       title: 'Ordering',
       duration: 2000,
       isClosable: true,
     });
     for (let seller in sellers) {
-      await doPaySeller(seller);
+      let { id } = await doOrder(seller);
+      saveCurrentOrder(id);
     }
     toast({
       title: 'Order Success',
@@ -135,6 +140,7 @@ function Checkout() {
       isClosable: true,
     });
     emptyCart();
+    history.push('/pay');
   }
 
   function calcCrow(lat1, lon1, lat2, lon2) {
@@ -304,8 +310,8 @@ function Checkout() {
                   )}
               </Text>
             </SimpleGrid>
-            <Button onClick={doPay} colorScheme="green">
-              Order & Pay
+            <Button onClick={doOrders} colorScheme="green">
+              Order
             </Button>
           </Stack>
         </Box>
