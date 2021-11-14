@@ -33,6 +33,7 @@ import {
   FiChevronDown,
 } from 'react-icons/fi';
 import { TiShoppingCart } from 'react-icons/ti';
+import { RiLuggageCartFill } from 'react-icons/ri';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { doLogout, getUserData } from '../../helpers/Auth';
@@ -48,6 +49,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, link: '/seller' },
   { name: 'Cart', icon: TiShoppingCart, link: '/seller/cart' },
   { name: 'My Products', icon: FiTrendingUp, link: '/seller/products' },
+  { name: 'Order', icon: RiLuggageCartFill, link: '/seller/order' },
   { name: 'Profile', icon: FiCompass, link: '/seller/profile' },
   // { name: 'Favourites', icon: FiStar, link: '#' },
   // { name: 'Settings', icon: FiSettings, link: '#' },

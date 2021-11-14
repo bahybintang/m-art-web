@@ -86,8 +86,28 @@ async function getOrdersByCurrentCustomer() {
   return data;
 }
 
+async function getOrdersByCurrentSeller() {
+  const { id } = getUserData();
+  const response = await fetchWithAuth(getUrl('/orders?seller_id.id=' + id));
+  const data = await response.json();
+  return data;
+}
+
+async function changeStatusByOrderId(id, status) {
+  const response = await fetchWithAuth(getUrl('/orders/' + id), {
+    method: 'PUT',
+    body: JSON.stringify({
+      status,
+    }),
+  });
+  const data = await response.json();
+  return data;
+}
+
 async function getOrderDetailsById(id) {
-  const response = await fetchWithAuth(getUrl('/order-details?order_id.id=' + id));
+  const response = await fetchWithAuth(
+    getUrl('/order-details?order_id.id=' + id)
+  );
   const data = await response.json();
   return data;
 }
@@ -174,4 +194,6 @@ export {
   addPayments,
   getOrdersByCurrentCustomer,
   getOrderDetailsById,
+  getOrdersByCurrentSeller,
+  changeStatusByOrderId,
 };

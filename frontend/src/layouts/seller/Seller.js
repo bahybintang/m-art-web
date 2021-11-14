@@ -8,6 +8,8 @@ import AddProduct from './AddProduct';
 import ProductDetail from './ProductDetail';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import Order from './Order';
+import OrderDetail from './OrderDetail';
 
 function Seller(props) {
   return (
@@ -15,6 +17,8 @@ function Seller(props) {
       <Switch>
         <Route path="/seller/checkout" component={Checkout} />
         <Route path="/seller/cart" component={Cart} />
+        <Route path="/seller/order/:id" component={OrderDetail} />
+        <Route path="/seller/order" component={Order} />
         <Route path="/seller/products/add" component={AddProduct} />
         <Route path="/seller/products/:id" component={ProductDetail} />
         <Route path="/seller/products" component={MyProducts} />
